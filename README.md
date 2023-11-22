@@ -90,5 +90,5 @@ Review:
 User:
 
 Menambahkan tautan berita acara ke README.md
-Berita Acara A11
+[Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
 
