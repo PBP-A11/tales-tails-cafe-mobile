@@ -1,3 +1,8 @@
+[![Staging](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml)
+[![Pre-Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml)
+[![Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml)
+
+
 # Tales & Tails Cafe 🏰🐈
 
 #### Kelompok: A-11
