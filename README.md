@@ -17,7 +17,7 @@
 [Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
 
 ## Tautan APK
-[Link app]()
+[Link app](https://appcenter.ms)
 
 
 ## Deskripsi aplikasi (nama dan fungsi aplikasi)
