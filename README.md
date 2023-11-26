@@ -69,7 +69,7 @@ Menampilkan koleksi buku yang disediakan dan Member dapat melihat detail buku, m
 Tempat Member dapat melihat buku-buku yang sedang ia pinjam, serta  member juga dapat mengembalikan buku yang ia pinjam.
 
 ### 5. Review
-Member dapat melihat dan menulis review terhadap buku-buku yang ada di web ini. Sedangkan guest, hanya dapat melihat review buku saja.
+Member dapat melihat dan menulis review terhadap buku-buku yang ada di aplikasi ini. Sedangkan guest, hanya dapat melihat review buku saja.
 
 ### 6. Profile
 Menampilkan data pribadi dari member.
