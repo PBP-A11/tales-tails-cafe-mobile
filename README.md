@@ -1,7 +1,7 @@
 [![Staging](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml)
 [![Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml)
-
+[![Build status](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)](https://appcenter.ms)
 
 # Tales & Tails Cafe 🏰🐈
 
@@ -12,6 +12,13 @@
 - [Febrian Irvansyah](https://github.com/febrian-irv) (2206083584)
 - [Muhammad Madhani Putra](https://github.com/mhmmdmadhanip) (2206028503)
 - [Shaquille Athar Adista](https://github.com/AtharAdista) (2206081875)
+
+## Menambahkan tautan berita acara ke README.md
+[Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
+
+## Tautan APK
+[Link app](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)
+
 
 ## Deskripsi aplikasi (nama dan fungsi aplikasi)
 Tales and Tails Cafe adalah sebuah Cafe yang mengambil konsep Cat Cafe, tetapi memiliki sebuah perpustakaan untuk meminjam buku juga. Cafe ini memiliki tujuan untuk memadukan suasana santai kafe dengan kemudahan akses ke koleksi buku yang beragam, hal ini bertujuan untuk menciptakan ruang yang menggabungkan dua kegiatan yang menyenangkan dan mendidik.
@@ -109,9 +116,5 @@ Menampilkan data member dan buku yang dipinjam. Admin juga dapat mengubah role d
 - Buat fungsi pada setiap modul yang dapat terintegrasi dengan database Django dan melakukan fect dengan menggunakan konsep async HTTP.
 - Lakukan Fetch data dari Django dan tampilkan ke flutter dengan memanfaatkan `FutureBuilder`
 
-## Menambahkan tautan berita acara ke README.md
-[Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
 
-## Tautan APK
-[![Build status](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)](https://appcenter.ms)
 
