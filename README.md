@@ -84,12 +84,30 @@ Menampilkan data member dan buku yang dipinjam. Admin juga dapat mengubah role d
    - Tidak mempunyai hak dalam meminjam atau menambah buku
 
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester
-- Register:
-- Login:
-- Logout:
-- Katalog:
-- Review:
-- User:
+
+<b>Authentication</b>
+
+- Install package yang sudah disediakan oleh tim asdos.
+- Tambahkan `CookieRequest` pada setiap child widgets.
+- Buat `login.dart` pada `screens`.
+- Install `django-cors-headers` pada proyek Django.
+- Buat django-app bernama `authentication` pada Django.
+- Tambahkan `authentication` ke pada `setting.py`.
+- Tambahkan `corsheades` dan hal lain yang dibutuhkan ke `setting.py`.
+- Buat metode login di `authentication/views.py` dan tambahkan ke `urls.py`
+  
+<b>Model kustom</b>
+
+- Buka endpoint JSON pada proyek django, kemudian salin data yang didapatkan dan buka situs Quicktype
+- Pada situs Quicktype ubah <i>setup name</i> menjadi `product`,<i>source type menjadi `JSON`</i>, dan <i>language</i> menjadi `Dart`.
+- Tempel data JSON dan klik copy code.
+- Buat folder models pada libary dan buat file baru untuk menyimpan salinan yang sudah didapatkan dari Quicktype tadi.
+
+<b>Fetch data</b>
+
+- Tambahkan Dependensi HTTP
+- Buat fungsi pada setiap modul yang dapat terintegrasi dengan database Django dan melakukan fect dengan menggunakan konsep async HTTP.
+- Lakukan Fetch data dari Django dan tampilkan ke flutter dengan memanfaatkan `FutureBuilder`
 
 ## Menambahkan tautan berita acara ke README.md
 [Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
