@@ -26,11 +26,14 @@ Tales and Tails Cafe adalah sebuah Cafe yang mengambil konsep Cat Cafe, tetapi m
 Seiring dengan kesuksesan dan popularitas Tales and Tails Cafe, pemiliknya telah merespons kebutuhan pelanggan yang terus berkembang. Memahami bahwa beberapa pelanggan mengalami kesulitan mengakses aplikasi web Tales and Tails Cafe di perangkat mobile, pemilik cafe memutuskan untuk memberikan pengalaman yang lebih baik melalui pengembangan aplikasi mobile resmi.
 	
 ## Pembagian kerja per anggota
-- Andi Salsabila Ardian = Review
-- Fariska Fedira Ardhanariswari = Authentication
-- Febrian Irvansyah = List member, profile member
-- Muhammad Madhani Putra = Hapus dan nambah buku, List user
-- Shaquille Athar Adista = Catalog, homepage, profile admin
+
+| Nama | Modul yang Dikerjakan |
+|------|-----------------------|
+| Andi Salsabila Ardian | Review |
+| Fariska Fedira Ardhanariswari | Authentication |
+| Febrian Irvansyah | List member dan profile member |
+| Muhammad Madhani Putra | Hapus & tambah buku dan list user |
+| Shaquille Athar Adista | Catalog, homapage, dan profile admin |
 
 ## Daftar modul yang diimplementasiklan
 ###  1. Authentication
