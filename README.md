@@ -112,3 +112,6 @@ Menampilkan data member dan buku yang dipinjam. Admin juga dapat mengubah role d
 ## Menambahkan tautan berita acara ke README.md
 [Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
 
+## Tautan APK
+[![Build status](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)](https://appcenter.ms)
+
