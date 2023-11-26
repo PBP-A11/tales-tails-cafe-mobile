@@ -17,7 +17,7 @@
 [Link Berita Acara A-11](https://docs.google.com/spreadsheets/d/1p8euC71zwOiWv7plgYurs9e5wq0bpHTVqu4wkirNlBw/edit?usp=sharing)
 
 ## Tautan APK
-[Link app](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)
+[Link app]()
 
 
 ## Deskripsi aplikasi (nama dan fungsi aplikasi)
@@ -32,7 +32,8 @@ Seiring dengan kesuksesan dan popularitas Tales and Tails Cafe, pemiliknya telah
 - Muhammad Madhani Putra = Hapus dan nambah buku, List user
 - Shaquille Athar Adista = Catalog, homepage, profile admin
 
-## Authentication
+## Daftar modul yang diimplementasiklan
+###  1. Authentication
 Authentication adalah tempat dimana user dan admin dapat login. Nantinya, akses akan diberikan sesuai dengan role pengguna.
 
 <b>Login :</b>
@@ -47,10 +48,10 @@ Authentication adalah tempat dimana user dan admin dapat login. Nantinya, akses 
 - Field no. telp 
 - Field tanggal lahir 
 
-## Homepage
+### 2. Homepage
 Tempat halaman muka dari mobile app ini.
 
-## Katalog
+### 3. Katalog
 Menampilkan koleksi buku yang disediakan dan Member dapat melihat detail buku, mencari buku, dan meminjam buku. Sedangkan guest hanya dapat melihat buku dan mencari data buku saja.
 
 <b>Atribut:</b>
@@ -61,21 +62,22 @@ Menampilkan koleksi buku yang disediakan dan Member dapat melihat detail buku, m
 - Tempat user meminjam buku
 
 
-## List dan pengembalian buku yang dipinjam
+### 4. List dan pengembalian buku yang dipinjam
 Tempat Member dapat melihat buku-buku yang sedang ia pinjam, serta  member juga dapat mengembalikan buku yang ia pinjam.
 
-## Review
+### 5. Review
 Member dapat melihat dan menulis review terhadap buku-buku yang ada di web ini. Sedangkan guest, hanya dapat melihat review buku saja.
 
-## Profile
+### 6. Profile
 Menampilkan data pribadi dari member.
 
-## Hapus/Tambah Buku
+### 7. Hapus/Tambah Buku
 Admin dapat menambah dan menghapus data buku.
-## List Member dan update role
+
+### 8. List Member dan update role
 Menampilkan data member dan buku yang dipinjam. Admin juga dapat mengubah role dari suatu akun.
 
-## Peran atau aktor pengguna aplikasi
+### Peran atau aktor pengguna aplikasi
 1. Admin:
    - Hapus/tambah buku
    - Melihat list peminjam dan buku yang dipinjam
