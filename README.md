@@ -7,7 +7,7 @@
 
 #### Kelompok: A-11
 #### Anggota:
-- [Andi Salsabila Ardian](https://github.com/stronovski) ()
+- [Andi Salsabila Ardian](https://github.com/stronovski) (2206083571)
 - [Fariska Fedira Ardhanariswari](https://github.com/fariskafedira) (2206815705)
 - [Febrian Irvansyah](https://github.com/febrian-irv) (2206083584)
 - [Muhammad Madhani Putra](https://github.com/mhmmdmadhanip) (2206028503)
