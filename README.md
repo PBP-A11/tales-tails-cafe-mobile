@@ -30,10 +30,10 @@ Seiring dengan kesuksesan dan popularitas Tales and Tails Cafe, pemiliknya telah
 | Nama | Modul yang Dikerjakan |
 |------|-----------------------|
 | Andi Salsabila Ardian | Review |
-| Fariska Fedira Ardhanariswari | Authentication dan homepage |
-| Febrian Irvansyah | List member dan profile member |
+| Fariska Fedira Ardhanariswari | Authentication dan profile admin |
+| Febrian Irvansyah | List member dan homepage |
 | Muhammad Madhani Putra | Hapus & tambah buku dan list user |
-| Shaquille Athar Adista | Catalog dan profile admin |
+| Shaquille Athar Adista | Catalog dan profile member |
 
 ## Daftar modul yang diimplementasiklan
 ###  1. Authentication
