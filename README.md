@@ -7,7 +7,7 @@
 
 #### Kelompok: A-11
 #### Anggota:
-- [Andi Salsabila Ardian](https://github.com/stronovski) ()
+- [Andi Salsabila Ardian](https://github.com/stronovski) (2206083571)
 - [Fariska Fedira Ardhanariswari](https://github.com/fariskafedira) (2206815705)
 - [Febrian Irvansyah](https://github.com/febrian-irv) (2206083584)
 - [Muhammad Madhani Putra](https://github.com/mhmmdmadhanip) (2206028503)
@@ -30,10 +30,10 @@ Seiring dengan kesuksesan dan popularitas Tales and Tails Cafe, pemiliknya telah
 | Nama | Modul yang Dikerjakan |
 |------|-----------------------|
 | Andi Salsabila Ardian | Review |
-| Fariska Fedira Ardhanariswari | Authentication |
-| Febrian Irvansyah | List member dan profile member |
+| Fariska Fedira Ardhanariswari | Authentication dan profile admin |
+| Febrian Irvansyah | List member dan homepage |
 | Muhammad Madhani Putra | Hapus & tambah buku dan list user |
-| Shaquille Athar Adista | Catalog, homapage, dan profile admin |
+| Shaquille Athar Adista | Catalog dan profile member |
 
 ## Daftar modul yang diimplementasiklan
 ###  1. Authentication
@@ -69,7 +69,7 @@ Menampilkan koleksi buku yang disediakan dan Member dapat melihat detail buku, m
 Tempat Member dapat melihat buku-buku yang sedang ia pinjam, serta  member juga dapat mengembalikan buku yang ia pinjam.
 
 ### 5. Review
-Member dapat melihat dan menulis review terhadap buku-buku yang ada di web ini. Sedangkan guest, hanya dapat melihat review buku saja.
+Member dapat melihat dan menulis review terhadap buku-buku yang ada di aplikasi ini. Sedangkan guest, hanya dapat melihat review buku saja.
 
 ### 6. Profile
 Menampilkan data pribadi dari member.
