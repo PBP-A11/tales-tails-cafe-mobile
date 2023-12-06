@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
+import 'package:tales_tails_cafe/models/user.dart';
 
 class MemberListPage extends StatefulWidget {
     const MemberListPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class MemberListPage extends StatefulWidget {
 }
 
 class _MemberListPageState extends State<MemberListPage> {
-Future<List<Member>> fetchMember() async {
+Future<List<User>> fetchMember() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
         'http://localhost:8000/member-list-json/');
@@ -24,10 +25,10 @@ Future<List<Member>> fetchMember() async {
     var data = jsonDecode(utf8.decode(response.bodyBytes));
 
     // melakukan konversi data json menjadi object Member
-    List<Member> list_Member = [];
+    List<User> list_Member = [];
     for (var d in data) {
         if (d != null) {
-            list_Member.add(Member.fromJson(d));
+            list_Member.add(User.fromJson(d));
         }
     }
     return list_Member;
