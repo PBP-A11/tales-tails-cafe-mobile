@@ -15,7 +15,7 @@ class _MemberListPageState extends State<MemberListPage> {
 Future<List<User>> fetchMember() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
-        'http://localhost:8000/member-list-json/');
+        'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/member-list-json/');
     var response = await http.get(
         url,
         headers: {"Content-Type": "application/json"},
