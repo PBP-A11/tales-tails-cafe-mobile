@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
+import 'package:tales_tails_cafe/widgets/left_drawer.dart';
+import 'package:tales_tails_cafe/screens/list_product.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
   final List<ShopItem> items = [
-    ShopItem("Catalog", Icons.checklist),
+    ShopItem("Lihat Item", Icons.checklist),
     ShopItem("Tambah Item", Icons.add_shopping_cart),
     ShopItem("Logout", Icons.logout),
   ];
@@ -27,7 +30,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Tales & Tails Cafe',
+          'Game Sthar',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.indigo,
@@ -45,7 +48,7 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'Tales & Tails Cafe', // Text yang menandakan toko
+                  'PBP Shop', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -82,11 +85,12 @@ class ShopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: Colors.indigo,
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
+        onTap: () async {
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -94,7 +98,38 @@ class ShopCard extends StatelessWidget {
               content: Text("Kamu telah menekan tombol ${item.name}!"),
               backgroundColor: getColorDependsItem(item.name),
             ));
-             
+             if (item.name == "Tambah Item") {
+              Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProductPage()));
+            }
+            if (item.name == "Lihat produk"){
+              Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProductPage()));
+            } else if (item.name == "Lihat Item") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ProductPage()));
+            } 
+            // else if (item.name == "Logout") {
+            //   final response = await request.logout(
+            //       "https://shaquille-athar-tugas.pbp.cs.ui.ac.id/auth/logout/");
+            //   String message = response["message"];
+            //   if (response['status']) {
+            //     String uname = response["username"];
+            //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //       content: Text("$message Sampai jumpa, $uname."),
+            //     ));
+            //     Navigator.pushReplacement(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => const LoginPage()),
+            //     );
+            //   } else {
+            //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            //       content: Text("$message"),
+            //     ));
+            //   }
+            // }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
