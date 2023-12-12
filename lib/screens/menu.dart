@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
-import 'package:tales_tails_cafe/screens/list_product.dart';
+import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 

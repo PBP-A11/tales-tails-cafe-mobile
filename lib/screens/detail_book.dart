@@ -5,7 +5,7 @@ import 'package:tales_tails_cafe/models/books.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:tales_tails_cafe/screens/list_product.dart';
+import 'package:tales_tails_cafe/screens/catalog.dart';
 
 class DetailGame extends StatelessWidget {
   final Product product;
