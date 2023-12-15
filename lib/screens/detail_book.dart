@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class DetailGame extends StatelessWidget {
   final Product product;
@@ -23,17 +25,27 @@ class DetailGame extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 10),
+          children: [ 
+            Center(
+              child: Image.network("${product.fields.imageLink}",
+                height: 200,
+                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                  return Text(
+                    "Image not available",
+                    style: GoogleFonts.poppins(),
+                    );
+                },
+              )),
+            SizedBox(height: 20),
             Text(
-              "Judul: ${product.fields.title}",
+              "Judul\n${product.fields.title}",
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
             SizedBox(height: 10),
             Text(
-              'Category: ${product.fields.category}',
+              'Category\n${product.fields.category}',
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -47,12 +59,12 @@ class DetailGame extends StatelessWidget {
             // ),
             SizedBox(height: 10),
             Text(
-              'Deskripsi: ${product.fields.description}',
+              'Deskripsi \n${product.fields.description}',
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // Text(
             //   'Jumlah: ${product.fields.amount}',
             //   style: TextStyle(
@@ -67,7 +79,8 @@ class DetailGame extends StatelessWidget {
             //   ),
             // ),
             // Display other details similarly...
-            ElevatedButton(
+            Center( 
+              child: ElevatedButton(
                 onPressed: () async {
                   final response = await http.post(
                       Uri.parse("http://127.0.0.1:8000/catalog/book-borrowed-flutter/${product.pk}"));
@@ -83,7 +96,8 @@ class DetailGame extends StatelessWidget {
 
                       }
                 },
-                child: const Text("Borrow Book"))
+                child: const Text("Borrow Book"))),
+            SizedBox(height: 20),
           ],
         ),
       ),

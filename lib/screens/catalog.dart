@@ -71,46 +71,64 @@ Widget build(BuildContext context) {
                             );
                           },
                         child:Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 10),
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                 Image.network(
-                                    "${snapshot.data![index].fields.imageLink}",
-                                    width: 100,
-                                    height: 100,
-                                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                      return Text(
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 5),
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.network(
+                                  "${snapshot.data![index].fields.imageLink}",
+                                  width: 100,
+                                  height: 100,
+                                  errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                    return Container(
+                                      width: 100,
+                                      child: Text(
                                         "Image not available",
                                         style: GoogleFonts.mochiyPopPOne(),
-                                        );
-                                    },
-                                  ),
-                                const SizedBox(height: 10),
-                                Text(
-                                    "${snapshot.data![index].fields.title}",
-                                    style: const TextStyle(
-                                        fontSize: 10.0,
-                                        fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 1),
-                                  Text(
-                                    snapshot.data![index].fields.isBorrowed ? 'Not Avaible' : 'Avaible',
-                                    style: GoogleFonts.mochiyPopPOne(
-                                      textStyle : TextStyle(
-                                      fontSize: 10.0,
-                                      color: snapshot.data![index].fields.isBorrowed ? Colors.red : Colors.green,
-                                      ),
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  
-                                ],
+                                        ),
+                                    );
+                                  },
                                 ),
+                              const SizedBox(height: 8),
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "${snapshot.data![index].fields.title}",
+                                        style: const TextStyle(
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                    Text(
+                                        "${snapshot.data![index].fields.author}",
+                                        style: const TextStyle(
+                                            fontSize: 12.0,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        snapshot.data![index].fields.isBorrowed ? 'Not Avaible' : 'Avaible',
+                                        style: GoogleFonts.mochiyPopPOne(
+                                          textStyle : TextStyle(
+                                          fontSize: 10.0,
+                                          color: snapshot.data![index].fields.isBorrowed ? Colors.red : Colors.green,
+                                          ),
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                                
+                              ],
+                              ),
                             )
                           )
                             );
