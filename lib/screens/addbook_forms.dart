@@ -1,11 +1,10 @@
-// ignore_for_file: use_build_context_synchronously, prefer_final_fields
+// ignore_for_file: use_build_context_synchronously, prefer_final_fields, library_private_types_in_public_api
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:tales_tails_cafe/models/books.dart';
 import 'package:tales_tails_cafe/screens/menu.dart';
 
 class BookFormPage extends StatefulWidget {
@@ -196,7 +195,7 @@ class _BookFormPageState extends State<BookFormPage> {
                       if (_formKey.currentState!.validate()) {
                           // Kirim ke Django dan tunggu respons
                           final response = await request.postJson(
-                          "http://127.0.0.1:8000/add-book-flutter/",
+                          "http://127.0.0.1:8000/catalog/add-book-flutter/",
                           jsonEncode(<String, String>{
                               'title': _title,
                               'author': _author,

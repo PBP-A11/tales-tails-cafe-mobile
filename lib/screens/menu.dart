@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tales_tails_cafe/screens/addbook_forms.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/list_product.dart';
@@ -101,7 +102,7 @@ class ShopCard extends StatelessWidget {
              if (item.name == "Tambah Item") {
               Navigator.push(context,
                     MaterialPageRoute(
-                      builder: (context) => const ProductPage()));
+                      builder: (context) => const BookFormPage()));
             }
             if (item.name == "Lihat produk"){
               Navigator.push(context,
