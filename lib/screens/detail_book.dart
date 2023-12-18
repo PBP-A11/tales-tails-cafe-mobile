@@ -37,17 +37,33 @@ class DetailGame extends StatelessWidget {
                 },
               )),
             SizedBox(height: 20),
-            Text(
-              "Judul\n${product.fields.title}",
+            const Text(
+              "Judul",
               style: TextStyle(
                 fontSize: 16,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Text(
+              '${product.fields.title}',
+              style: TextStyle(
+                fontSize: 16,
+                
               ),
             ),
             SizedBox(height: 10),
-            Text(
-              'Category\n${product.fields.category}',
+            const Text(
+              'Category',
               style: TextStyle(
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '${product.fields.category}',
+              style: TextStyle(
+                fontSize: 16,
+                
               ),
             ),
             SizedBox(height: 10),
@@ -58,10 +74,18 @@ class DetailGame extends StatelessWidget {
             //   ),
             // ),
             SizedBox(height: 10),
-            Text(
-              'Deskripsi \n${product.fields.description}',
+            const Text(
+              'Deskripsi',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '${product.fields.description}',
+              style: TextStyle(
+                fontSize: 18,
+                
               ),
             ),
             SizedBox(height: 20),

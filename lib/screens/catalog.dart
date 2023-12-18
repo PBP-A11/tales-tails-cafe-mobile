@@ -8,132 +8,150 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class ProductPage extends StatefulWidget {
-    const ProductPage({Key? key}) : super(key: key);
+  const ProductPage({Key? key}) : super(key: key);
 
-    @override
-    _ProductPageState createState() => _ProductPageState();
+  @override
+  _ProductPageState createState() => _ProductPageState();
 }
 
 class _ProductPageState extends State<ProductPage> {
-Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse(
-        'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/get-books/');
+  late Future<List<Product>> futureProducts;
+
+  @override
+  void initState() {
+    super.initState();
+    futureProducts = fetchProduct();
+  }
+
+  Future<List<Product>> fetchProduct() async {
+    var url = Uri.parse('https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/get-books/');
     var response = await http.get(
-        url,
-        headers: {"Content-Type": "application/json"},
+      url,
+      headers: {"Content-Type": "application/json"},
     );
 
-    // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // melakukan konversi data json menjadi object Product
-    List<Product> list_product = [];
+    List<Product> listProduct = [];
     for (var d in data) {
-        if (d != null) {
-            list_product.add(Product.fromJson(d));
-        }
+      if (d != null) {
+        listProduct.add(Product.fromJson(d));
+      }
     }
-    return list_product;
-}
+    return listProduct;
+  }
 
-@override
-Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-        title: const Text('Product'),
-        ),
-        drawer: const LeftDrawer(),
-        body: FutureBuilder(
-            future: fetchProduct(),
-            builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
-                    return const Center(child: CircularProgressIndicator());
-                } else {
-                    if (!snapshot.hasData) {
-                    return const Column(
-                        children: [
-                        Text(
-                            "Tidak ada data produk.",
-                            style:
-                                TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-                        ),
-                        SizedBox(height: 8),
-                        ],
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Catalog'),
+      ),
+      drawer: const LeftDrawer(),
+      body: FutureBuilder<List<Product>>(
+        future: futureProducts,
+        builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Error fetching data'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Tidak ada data produk.'));
+          } else {
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Menampilkan 2 kolom
+                childAspectRatio: 150/180,
+                crossAxisSpacing: 8.0, // Spasi horizontal antara item
+                mainAxisSpacing: 8.0, // Spasi vertikal antara item
+              ),
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                Product product = snapshot.data![index];
+                return GestureDetector(
+                  onTap: () {
+                    // Navigasi ke halaman detail
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailGame(product: product),
+                      ),
                     );
-                } else {
-                    return ListView.builder(
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (_, index) => InkWell(
-                          onTap: (){
-                            Navigator.push(context, 
-                            MaterialPageRoute(builder: (context) => DetailGame(product: snapshot.data![index]),
-                            ),
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(116, 240, 229, 210),
+                      border: Border.all(color: Colors.brown, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    margin: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(left: 4, right: 4),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          product.fields.imageLink,
+                          width: 100,
+                          height: 100,
+                          errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                            return SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Center(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Image not available",
+                                    style: GoogleFonts.mochiyPopPOne(),          
+                                  ),
+                                ),
+                              ),
                             );
                           },
-                        child:Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Image.network(
-                                  "${snapshot.data![index].fields.imageLink}",
-                                  width: 100,
-                                  height: 100,
-                                  errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                    return Container(
-                                      width: 100,
-                                      child: Text(
-                                        "Image not available",
-                                        style: GoogleFonts.mochiyPopPOne(),
-                                        ),
-                                    );
-                                  },
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          product.fields.title,
+                          style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
                                 ),
-                              const SizedBox(height: 8),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        "${snapshot.data![index].fields.title}",
-                                        style: const TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 2),
-                                    Text(
-                                        "${snapshot.data![index].fields.author}",
-                                        style: const TextStyle(
-                                            fontSize: 12.0,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 2),
-                                      Text(
-                                        snapshot.data![index].fields.isBorrowed ? 'Not Avaible' : 'Avaible',
-                                        style: GoogleFonts.mochiyPopPOne(
-                                          textStyle : TextStyle(
-                                          fontSize: 10.0,
-                                          color: snapshot.data![index].fields.isBorrowed ? Colors.red : Colors.green,
-                                          ),
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                  ],
-                                ),
-                              ),
-                                
-                              ],
-                              ),
-                            )
-                          )
-                            );
-                    }
-                }
-            }));
-    }
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          product.fields.author,
+                          style: GoogleFonts.poppins(
+                            fontSize: 12.0
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          product.fields.isBorrowed ? 'Not Avaible' : 'Avaible',
+                          style: GoogleFonts.mochiyPopPOne(
+                            textStyle : TextStyle(
+                            fontSize: 10.0,
+                            color: snapshot.data![index].fields.isBorrowed ? Colors.red : Colors.green,
+                            ),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        },
+      ),
+    );
+  }
 }
+
