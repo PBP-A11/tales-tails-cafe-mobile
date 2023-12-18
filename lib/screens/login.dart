@@ -9,6 +9,7 @@ void main() {
 
 bool loggedIn = false;
 bool isAdmin = false;
+String usn = "";
 
 class LoginApp extends StatelessWidget {
   const LoginApp({super.key});
@@ -82,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                   loggedIn = true;
                   String message = response['message'];
                   String uname = response['username'];
+                  usn = uname;
                   if (response['user_type'] == "ADMIN") {
                     isAdmin = true;
                   } else {

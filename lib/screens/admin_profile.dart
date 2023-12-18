@@ -17,7 +17,7 @@ class AdminProfilePage extends StatefulWidget {
 class _AdminProfilePageState extends State<AdminProfilePage> {
   Future<UserAdmin> fetchProduct(request) async {
     var response = await request.get(
-      'http://127.0.0.1:8000/user_profile/get-user/',
+      'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/get-user/',
     );
 
     // print(response);

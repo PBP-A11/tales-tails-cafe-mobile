@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tales_tails_cafe/screens/addbook_forms.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
+import 'package:tales_tails_cafe/screens/mybook.dart';
 import 'package:tales_tails_cafe/screens/profile_user.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
@@ -13,10 +15,16 @@ class MyHomePage extends StatelessWidget {
 
    List<ShopItem> get items {
     // Change to a getter
-    if (loggedIn) {
+    if (loggedIn && isAdmin) {
       return [
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Tambah Item", Icons.add_shopping_cart),
+        ShopItem("Logout", Icons.logout),
+      ];
+    } else if(loggedIn){
+      return [
+        ShopItem("Lihat Item", Icons.checklist),
+        ShopItem("Lihat Buku", Icons.add_shopping_cart),
         ShopItem("Logout", Icons.logout),
       ];
     } else {
@@ -112,11 +120,11 @@ class ShopCard extends StatelessWidget {
             ));
           if (item.name == "Tambah Item") {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const UserProfilePage()));
+              MaterialPageRoute(builder: (context) => const BookFormPage()));
           }
           if (item.name == "Lihat produk") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const UserProfilePage()));
+                MaterialPageRoute(builder: (context) => const ProductPage()));
           } else if (item.name == "Lihat Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ProductPage()));
@@ -142,7 +150,10 @@ class ShopCard extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text("$message"),
               ));
-            }
+            } 
+          } else if(item.name == "Lihat Buku") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyBookPage(username: usn,)));
           }
         },
         child: Container(
