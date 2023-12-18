@@ -89,7 +89,7 @@ class LeftDrawer extends StatelessWidget {
             onTap: () async {
               if (loggedIn) {
                 final response = await request
-                    .logout("http://127.0.0.1:8000/auth/logout/");
+                    .logout("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");
                 String message = response["message"];
                 loggedIn = false;
                 if (response['status']) {
