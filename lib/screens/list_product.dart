@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:tales_tails_cafe/models/books.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/detaild_game.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class ProductPage extends StatefulWidget {
     const ProductPage({Key? key}) : super(key: key);
@@ -70,24 +72,43 @@ Widget build(BuildContext context) {
                           },
                         child:Container(
                                 margin: const EdgeInsets.symmetric(
-                                    horizontal: 16, vertical: 12),
-                                padding: const EdgeInsets.all(20.0),
+                                    horizontal: 5, vertical: 10),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                    Text(
+                                 Image.network(
+                                    "${snapshot.data![index].fields.imageLink}",
+                                    width: 100,
+                                    height: 100,
+                                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                      return Text(
+                                        "Image not available",
+                                        style: GoogleFonts.mochiyPopPOne(),
+                                        );
+                                    },
+                                  ),
+                                const SizedBox(height: 10),
+                                Text(
                                     "${snapshot.data![index].fields.title}",
                                     style: const TextStyle(
-                                        fontSize: 18.0,
+                                        fontSize: 10.0,
                                         fontWeight: FontWeight.bold,
                                     ),
+                                  ),
+                                  const SizedBox(height: 1),
+                                  Text(
+                                    snapshot.data![index].fields.isBorrowed ? 'Not Avaible' : 'Avaible',
+                                    style: GoogleFonts.mochiyPopPOne(
+                                      textStyle : TextStyle(
+                                      fontSize: 10.0,
+                                      color: snapshot.data![index].fields.isBorrowed ? Colors.red : Colors.green,
+                                      ),
                                     ),
-                                    const SizedBox(height: 10),
-                                    Text("${snapshot.data![index].fields.author}"),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                        "${snapshot.data![index].fields.description}")
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  
                                 ],
                                 ),
                             )

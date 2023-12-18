@@ -1,20 +1,33 @@
+// ignore_for_file: use_build_context_synchronously, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
-import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/login.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/list_product.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'addbook_forms.dart';
 
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  final List<ShopItem> items = [
-    ShopItem("Lihat Item", Icons.checklist),
-    ShopItem("Tambah Item", Icons.add_shopping_cart),
-    ShopItem("Logout", Icons.logout),
-  ];
+   List<ShopItem> get items {
+    // Change to a getter
+    if (loggedIn) {
+      return [
+        ShopItem("Lihat Item", Icons.checklist),
+        ShopItem("Tambah Item", Icons.add_shopping_cart),
+        ShopItem("Logout", Icons.logout),
+      ];
+    } else {
+      return [
+        ShopItem("Lihat Item", Icons.checklist),
+        ShopItem("Login", Icons.login),
+      ];
+    }
+  }
 
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -31,7 +44,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Game Sthar',
+          'Tales & Tails Cafe',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.indigo,
@@ -99,38 +112,40 @@ class ShopCard extends StatelessWidget {
               content: Text("Kamu telah menekan tombol ${item.name}!"),
               backgroundColor: getColorDependsItem(item.name),
             ));
-             if (item.name == "Tambah Item") {
-              Navigator.push(context,
-                    MaterialPageRoute(
-                      builder: (context) => const BookFormPage()));
+          if (item.name == "Tambah Item") {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const BookFormPage()));
+          }
+          if (item.name == "Lihat produk") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ProductPage()));
+          } else if (item.name == "Lihat Item") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ProductPage()));
+          } else if (item.name == "Login") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginPage()));
+          } else if (item.name == "Logout") {
+            final response =
+                await request.logout("http://127.0.0.1:8000/auth/logout/");
+            String message = response["message"];
+            loggedIn = false;
+            isAdmin = false;
+            if (response['status']) {
+              String uname = response["username"];
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message Sampai jumpa, $uname."),
+              ));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("$message"),
+              ));
             }
-            if (item.name == "Lihat produk"){
-              Navigator.push(context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProductPage()));
-            } else if (item.name == "Lihat Item") {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ProductPage()));
-            } 
-            // else if (item.name == "Logout") {
-            //   final response = await request.logout(
-            //       "https://shaquille-athar-tugas.pbp.cs.ui.ac.id/auth/logout/");
-            //   String message = response["message"];
-            //   if (response['status']) {
-            //     String uname = response["username"];
-            //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //       content: Text("$message Sampai jumpa, $uname."),
-            //     ));
-            //     Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => const LoginPage()),
-            //     );
-            //   } else {
-            //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //       content: Text("$message"),
-            //     ));
-            //   }
-            // }
+          }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text
