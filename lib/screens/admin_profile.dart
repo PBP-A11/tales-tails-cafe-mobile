@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/models/user_admin.dart';
 import 'package:tales_tails_cafe/screens/edit_admin_profile.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
-import 'dart:convert';
 
 class AdminProfilePage extends StatefulWidget {
   const AdminProfilePage({Key? key}) : super(key: key);

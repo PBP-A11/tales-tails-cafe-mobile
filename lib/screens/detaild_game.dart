@@ -1,10 +1,7 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/models/books.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:tales_tails_cafe/screens/list_product.dart';
 
 class DetailGame extends StatelessWidget {
@@ -14,7 +11,6 @@ class DetailGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Book Details'),
