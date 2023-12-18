@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
+import 'package:tales_tails_cafe/screens/profile_user.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
@@ -111,11 +112,11 @@ class ShopCard extends StatelessWidget {
             ));
           if (item.name == "Tambah Item") {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProductPage()));
+              MaterialPageRoute(builder: (context) => const UserProfilePage()));
           }
           if (item.name == "Lihat produk") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProductPage()));
+                MaterialPageRoute(builder: (context) => const UserProfilePage()));
           } else if (item.name == "Lihat Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ProductPage()));
@@ -124,7 +125,7 @@ class ShopCard extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const LoginPage()));
           } else if (item.name == "Logout") {
             final response =
-                await request.logout("http://127.0.0.1:8000/auth/logout/");
+                await request.logout("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");
             String message = response["message"];
             loggedIn = false;
             isAdmin = false;

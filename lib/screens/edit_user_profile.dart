@@ -16,8 +16,7 @@ class EditUserProfilePage extends StatefulWidget {
 
 class _EditUserProfilePageState extends State<EditUserProfilePage> {
     final _formKey = GlobalKey<FormState>();
-    String _firstName = "";
-    String _lastName = "";
+    String _username = "";
     
 
     @override
@@ -46,38 +45,15 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                     decoration: InputDecoration(
-                                    hintText: "First Name",
-                                    labelText: "First Name",
+                                    hintText: "Username",
+                                    labelText: "Username",
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5.0),
                                     ),
                                     ),
                                     onChanged: (String? value) {
                                     setState(() {
-                                        _firstName = value!;
-                                    });
-                                    },
-                                    validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                        return "Nama tidak boleh kosong!";
-                                    }
-                                    return null;
-                                    },
-                                ),
-                                ),
-                                Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                    decoration: InputDecoration(
-                                    hintText: "Last Name",
-                                    labelText: "Last Name",
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                    ),
-                                    ),
-                                    onChanged: (String? value) {
-                                    setState(() {
-                                        _lastName = value!;
+                                        _username = value!;
                                     });
                                     },
                                     validator: (String? value) {
@@ -101,10 +77,9 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                                                 if (_formKey.currentState!.validate()) {
                                                     // Kirim ke Django dan tunggu respons
                                                     final response = await request.postJson(
-                                                    "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/edit-profile-admin/",
+                                                    "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/edit-profile-user/",
                                                     jsonEncode(<String, String>{
-                                                        'first_name': _firstName,
-                                                        'last_name': _lastName,
+                                                        'username': _username,
                                                     }));
                                                     if (response['status'] == 'success') {
                                                         ScaffoldMessenger.of(context)

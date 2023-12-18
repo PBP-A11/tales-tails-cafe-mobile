@@ -17,7 +17,7 @@ class UserProfilePage extends StatefulWidget {
 class _UserProfilePageState extends State<UserProfilePage> {
   Future<UserProfile> fetchProduct(request) async {
     var response = await request.get(
-      'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id//user_profile/get-user/',
+      'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/get-user/',
     );
 
     // print(response);
