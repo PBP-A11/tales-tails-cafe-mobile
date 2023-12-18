@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
+import 'package:tales_tails_cafe/screens/mybook.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/list_product.dart';
@@ -15,10 +16,16 @@ class MyHomePage extends StatelessWidget {
 
    List<ShopItem> get items {
     // Change to a getter
-    if (loggedIn) {
+    if (loggedIn && isAdmin) {
       return [
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Tambah Item", Icons.add_shopping_cart),
+        ShopItem("Logout", Icons.logout),
+      ];
+    } else if(loggedIn){
+      return [
+        ShopItem("Lihat Item", Icons.checklist),
+        ShopItem("Lihat Buku", Icons.add_shopping_cart),
         ShopItem("Logout", Icons.logout),
       ];
     } else {
@@ -112,7 +119,7 @@ class ShopCard extends StatelessWidget {
               content: Text("Kamu telah menekan tombol ${item.name}!"),
               backgroundColor: getColorDependsItem(item.name),
             ));
-          if (item.name == "Tambah Item") {
+          if (item.name == "Tambah Item" ) {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const BookFormPage()));
           }
@@ -145,6 +152,9 @@ class ShopCard extends StatelessWidget {
                 content: Text("$message"),
               ));
             }
+          } else if(item.name == "Lihat Buku") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MyBookPage(username: usn,)));
           }
         },
         child: Container(

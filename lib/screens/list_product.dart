@@ -99,7 +99,7 @@ Widget build(BuildContext context) {
                                   ),
                                   const SizedBox(height: 1),
                                   Text(
-                                    snapshot.data![index].fields.isBorrowed ? 'Not Avaible' : 'Avaible',
+                                    snapshot.data![index].fields.isBorrowed ? 'Not Available' : 'Available',
                                     style: GoogleFonts.mochiyPopPOne(
                                       textStyle : TextStyle(
                                       fontSize: 10.0,

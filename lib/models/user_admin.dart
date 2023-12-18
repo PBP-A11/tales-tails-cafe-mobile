@@ -15,6 +15,7 @@ class UserAdmin {
     String email;
     DateTime dateOfBirth;
     String userType;
+    int id;
 
     UserAdmin({
         required this.firstName,
@@ -23,6 +24,7 @@ class UserAdmin {
         required this.email,
         required this.dateOfBirth,
         required this.userType,
+        required this.id,
     });
 
     factory UserAdmin.fromJson(Map<String, dynamic> json) => UserAdmin(
@@ -32,6 +34,7 @@ class UserAdmin {
         email: json["email"],
         dateOfBirth: DateTime.parse(json["date_of_birth"]),
         userType: json["user_type"],
+        id: json["id"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -41,5 +44,6 @@ class UserAdmin {
         "email": email,
         "date_of_birth": "${dateOfBirth.year.toString().padLeft(4, '0')}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}",
         "user_type": userType,
+        "id" : id,
     };
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:tales_tails_cafe/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -9,7 +11,7 @@ void main() {
 
 bool loggedIn = false;
 bool isAdmin = false;
-
+String usn = "";
 class LoginApp extends StatelessWidget {
   const LoginApp({super.key});
 
@@ -82,6 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                   loggedIn = true;
                   String message = response['message'];
                   String uname = response['username'];
+                  usn = response['username'];
+                  print(usn);
                   if (response['user_type'] == "ADMIN") {
                     isAdmin = true;
                   } else {
