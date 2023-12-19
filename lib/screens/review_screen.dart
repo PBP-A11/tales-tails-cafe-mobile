@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/models/book_review.dart';
@@ -26,7 +27,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     List<BookReview> reviews = [];
 
     var response = await request
-        .get("http://127.0.0.1:8000/review/get_book_reviews_json/$id/");
+        .get("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/review/get_book_reviews_json/$id/");
 
     print(response);
     // konversi json menjadi object Product
@@ -44,7 +45,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     print(stars);
     print(content);
     var response = await request.post(
-      "http://127.0.0.1:8000/review/add_book_reviews_json/$id/",
+      "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/review/add_book_reviews_json/$id/",
       jsonEncode(
         {"stars": stars.toString(), "content": content},
       ),
@@ -55,11 +56,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
     if (response['status'] == true) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Berhasil menambahkan review")));
+        ..showSnackBar(SnackBar(content: Text("Berhasil menambahkan review", style: GoogleFonts.mochiyPopPOne())));
     } else {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Gagal menambahkan review")));
+        ..showSnackBar(SnackBar(content: Text("Gagal menambahkan review", style: GoogleFonts.mochiyPopPOne())));
     }
     print(response);
   }
@@ -69,7 +70,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     print(stars);
     print(content);
     var response = await request.post(
-      "http://10.0.2.2:8000/review/edit_book_reviews_json/$id/",
+      "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/review/edit_book_reviews_json/$id/",
       jsonEncode(
         {"stars": stars.toString(), "content": content},
       ),
@@ -80,11 +81,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
     if (response['status'] == true) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Berhasil edit review")));
+        ..showSnackBar(SnackBar(content: Text("Berhasil edit review", style: GoogleFonts.mochiyPopPOne())));
     } else {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Gagal edit review")));
+        ..showSnackBar(SnackBar(content: Text("Gagal edit review", style: GoogleFonts.mochiyPopPOne())));
     }
     print(response);
   }
@@ -94,18 +95,18 @@ class _ReviewScreenState extends State<ReviewScreen> {
     int id,
   ) async {
     var response = await request
-        .post("http://10.0.2.2:8000/review/delete_book_reviews_json/$id/", {});
+        .post("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/review/delete_book_reviews_json/$id/", {});
 
     setState(() {});
 
     if (response['status'] == true) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Berhasil delete review")));
+        ..showSnackBar(SnackBar(content: Text("Berhasil delete review", style: GoogleFonts.mochiyPopPOne())));
     } else {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text("Gagal delete review")));
+        ..showSnackBar(SnackBar(content: Text("Gagal delete review", style: GoogleFonts.mochiyPopPOne())));
     }
     print(response);
   }
@@ -124,9 +125,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
         ),
         backgroundColor: Color(0xfffefadd),
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Review',
-          style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold),
+          style: GoogleFonts.darumadropOne(
+                          color: Colors.brown, 
+                          fontSize: 26, 
+                          fontWeight: FontWeight.bold)
+          // style: TextStyle(color: Colors.brown, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
@@ -305,10 +310,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     children: [
                       Text(
                         !isEdit ? "Add your review" : "Edit Your Review",
-                        style: TextStyle(
-                            color: Colors.brown,
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold),
+                        style: GoogleFonts.darumadropOne(
+                          color: Colors.brown, 
+                          fontSize: 26, 
+                          fontWeight: FontWeight.bold)
+                        // style: TextStyle(
+                        //     color: Colors.brown,
+                        //     fontSize: 26,
+                        //     fontWeight: FontWeight.bold),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -392,7 +401,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(color: Colors.brown, width: 3),
                           ),
-                          child: Center(child: Text("Submit")),
+                          child: const Center(child: Text("Submit")),
                         ),
                       ),
                     ],
