@@ -101,7 +101,7 @@ class _EditAdminPageState extends State<EditAdminPage> {
                                                 if (_formKey.currentState!.validate()) {
                                                     // Kirim ke Django dan tunggu respons
                                                     final response = await request.postJson(
-                                                    "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/edit-profile-admin/",
+                                                    "http://127.0.0.1:8000/user_profile/edit-profile-admin/",
                                                     jsonEncode(<String, String>{
                                                         'first_name': _firstName,
                                                         'last_name': _lastName,
