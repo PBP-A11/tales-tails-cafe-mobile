@@ -65,34 +65,51 @@ class _ProductPageState extends State<ProductPage> {
                 crossAxisSpacing: 8.0, // Spasi horizontal antara item
                 mainAxisSpacing: 8.0, // Spasi vertikal antara item
               ),
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                Product product = snapshot.data![index];
-                return GestureDetector(
-                  onTap: () {
-                    // Navigasi ke halaman detail
-                    showModalBottomSheet(
-                      backgroundColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(color: Colors.brown),
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(15)),
+            ),
+          ),
+          Expanded(
+            child: FutureBuilder<List<Product>>(
+              future: futureProducts,
+              builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return const Center(child: Text('Error fetching data'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('Tidak ada data produk.'));
+                } else {
+                  List<Product> searchedProducts = searchProducts(searchText, snapshot.data!);
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, // Menampilkan 2 kolom
+                        childAspectRatio: MediaQuery.of(context).size.width/650,
+                        crossAxisSpacing: 8.0, // Spasi horizontal antara item
+                        mainAxisSpacing: 8.0, // Spasi vertikal antara item
                       ),
-                      context: context,
-                      builder: (context) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xfffefadd),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15)),
-                            border: Border.all(color: Colors.brown, width: 5),
-                          ),
-                          height: 200,
-                          child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                      itemCount: searchedProducts.length,
+                      itemBuilder: (context, index) {
+                        Product product = searchedProducts[index];
+                        return GestureDetector(
+                          onTap: () {
+                            // Navigasi ke halaman detail
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailGame(product: product),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 240, 229, 210),
+                              border: Border.all(color: Colors.brown, width: 4.0),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            margin: const EdgeInsets.all(8.0),
+                            padding: const EdgeInsets.only(left: 4, right: 4, top: 10),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 InkWell(
                                   onTap: () {

@@ -84,6 +84,12 @@ class DetailGame extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
+            Text(
+              '${product.fields.isBorrowed}',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
             SizedBox(height: 20),
             // Text(
             //   'Jumlah: ${product.fields.amount}',
@@ -125,7 +131,7 @@ class DetailGame extends StatelessWidget {
                               builder: (context) => ProductPage()),
                         );
                       } else {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );

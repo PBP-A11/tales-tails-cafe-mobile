@@ -63,6 +63,19 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                                     return null;
                                     },
                                 ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(color: Colors.brown, width: 2.0), // Warna saat difokuskan
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(color: Colors.brown, width: 2.0),
+                                  ),
+                                  prefixIcon: const Icon(
+                                    Icons.person, // Ganti dengan ikon yang sesuai
+                                    color: Colors.brown, // Warna ikon
+                                  ),
+
                                 ),
                                 Align(
                                     alignment: Alignment.bottomCenter,
