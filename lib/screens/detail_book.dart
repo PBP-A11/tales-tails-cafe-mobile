@@ -19,12 +19,28 @@ class DetailGame extends StatelessWidget {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Book Details'),
+        title: Text(
+          'Book Details',
+          style: GoogleFonts.mochiyPopPOne(),
+          ),
+        backgroundColor: Color.fromARGB(255, 240, 229, 210),
+        bottom: PreferredSize(
+            preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.brown,
+                          width: 4))), // Ubah warna garis sesuai keinginan
+          ),
+        ),
       ),
+      backgroundColor: Color.fromARGB(255, 240, 229, 210),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          
           children: [
             Center(
                 child: Image.network(
@@ -64,13 +80,6 @@ class DetailGame extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            // Text(
-            //   'Platform: ${product.fields.platform}',
-            //   style: TextStyle(
-            //     fontSize: 16,
-            //   ),
-            // ),
-            SizedBox(height: 10),
             const Text(
               'Deskripsi',
               style: TextStyle(
@@ -84,23 +93,19 @@ class DetailGame extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
+            Text(
+              '${product.fields.isBorrowed}',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
             SizedBox(height: 20),
-            // Text(
-            //   'Jumlah: ${product.fields.amount}',
-            //   style: TextStyle(
-            //     fontSize: 16,
-            //   ),
-            // ),
-            // SizedBox(height: 10),
-            // Text(
-            //   'Harga: ${product.fields.price}',
-            //   style: TextStyle(
-            //     fontSize: 16,
-            //   ),
-            // ),
-            // Display other details similarly...
             Center(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(255, 240, 229, 210),
+                      side: BorderSide(color: Colors.brown, width: 2),
+                    ),      
                     onPressed: () async {
                       final response = await request.get(
                           "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/book-borrowed-flutter/${product.pk}");
@@ -125,13 +130,16 @@ class DetailGame extends StatelessWidget {
                               builder: (context) => ProductPage()),
                         );
                       } else {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       }
                     },
-                    child: const Text("Borrow Book"))),
+                    child: const Text(
+                      "Borrow Book",
+                      style: TextStyle(color: Colors.black),
+                      ))),
             SizedBox(height: 20),
           ],
         ),

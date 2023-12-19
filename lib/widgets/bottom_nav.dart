@@ -4,7 +4,6 @@ import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/list_member.dart';
 import 'package:tales_tails_cafe/screens/menu.dart';
 import 'package:tales_tails_cafe/screens/profile_page.dart';
-import 'package:tales_tails_cafe/screens/profile_user.dart';
 
 class BottomNav extends StatefulWidget {
   final int initialIndex;
@@ -32,7 +31,7 @@ class _BottomNavState extends State<BottomNav> {
 
   final List<Widget> _pages = [
     MyHomePage(),
-    UserProfilePage(),
+    UserProfilePages(),
     ProductPage(),
     MemberListPage(),
   ];
