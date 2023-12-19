@@ -2,6 +2,7 @@ import 'package:tales_tails_cafe/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 
 void main() {
   runApp(const LoginApp());
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                 // gunakan URL http://10.0.2.2/
                 final response =
-                    await request.login("http://127.0.0.1:8000/auth/login/", {
+                    await request.login("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/login/", {
                   'username': username,
                   'password': password,
                 });
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                    MaterialPageRoute(builder: (context) => BottomNav()),
                   );
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
