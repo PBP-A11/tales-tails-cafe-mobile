@@ -2,6 +2,7 @@ import 'package:tales_tails_cafe/screens/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 import 'package:tales_tails_cafe/screens/register.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                    MaterialPageRoute(builder: (context) => BottomNav()),
                   );
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()

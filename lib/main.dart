@@ -4,6 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/menu.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 
 
 
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.mochiyPopPOneTextTheme(Theme.of(context).textTheme),
           useMaterial3: true,
         ),
-        home: MyHomePage(),
+        home: BottomNav(),
       )
     );
   }
