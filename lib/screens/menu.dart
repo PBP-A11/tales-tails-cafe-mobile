@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
-import 'package:tales_tails_cafe/screens/profile_user.dart';
+import 'package:tales_tails_cafe/screens/profile_page.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
@@ -112,11 +112,11 @@ class ShopCard extends StatelessWidget {
             ));
           if (item.name == "Tambah Item") {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const UserProfilePage()));
+              MaterialPageRoute(builder: (context) => const UserProfilePages()));
           }
           if (item.name == "Lihat produk") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const UserProfilePage()));
+                MaterialPageRoute(builder: (context) => const UserProfilePages()));
           } else if (item.name == "Lihat Item") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const ProductPage()));
