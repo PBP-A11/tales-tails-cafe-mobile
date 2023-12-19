@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:tales_tails_cafe/models/books.dart';
+import 'package:tales_tails_cafe/screens/review_screen.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/detail_book.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   late Future<List<Product>> futureProducts;
-  String searchText = '';
 
   @override
   void initState() {
@@ -25,7 +24,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse('https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/get-books/');
+    var url = Uri.parse('http://127.0.0.1:8000/catalog/get-books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -41,58 +40,30 @@ class _ProductPageState extends State<ProductPage> {
     return listProduct;
   }
 
-    List<Product> searchProducts(String text, List<Product> products) {
-    if (text.isEmpty) {
-      return products;
-    }
-    return products
-        .where((product) =>
-            product.fields.title.toLowerCase().contains(text.toLowerCase()))
-        .toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          'Catalog',
-          style: GoogleFonts.mochiyPopPOne(),
-        ),
-        backgroundColor: Color.fromARGB(255, 240, 229, 210),
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
-            child: Container(
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(
-                          color: Colors.brown,
-                          width: 4))), // Ubah warna garis sesuai keinginan
-          ),
-        ),
+        title: const Text('Catalog'),
       ),
       drawer: const LeftDrawer(),
-      backgroundColor: Color.fromARGB(255, 241, 157, 0),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              onChanged: (value) {
-                setState(() {
-                  searchText = value;
-                });
-              },
-              decoration: InputDecoration(
-                fillColor: Color.fromARGB(255, 240, 229, 210),
-                filled: true,
-                hintText: 'Search by title...',
-                prefixIcon: Icon(Icons.search),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: const BorderSide(color: Colors.brown, width: 4.0),
-                ),
+      body: FutureBuilder<List<Product>>(
+        future: futureProducts,
+        builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Error fetching data'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Tidak ada data produk.'));
+          } else {
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Menampilkan 2 kolom
+                childAspectRatio: 150 / 180,
+                crossAxisSpacing: 8.0, // Spasi horizontal antara item
+                mainAxisSpacing: 8.0, // Spasi vertikal antara item
               ),
             ),
           ),
@@ -140,82 +111,127 @@ class _ProductPageState extends State<ProductPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Center(
-                                  child: Image.network(
-                                    product.fields.imageLink,
-                                    width: 150,
-                                    height: 150,
-                                    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                                      return SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: Center(
-                                          child: Container(
-                                            margin: const EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              "Image not available",
-                                              style: GoogleFonts.mochiyPopPOne(),          
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 4),
-                                  child: Text(
-                                    product.fields.title,
-                                    style: const TextStyle(
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.bold,
-                                          ),
-                                    textAlign: TextAlign.left,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 4),
-                                  child: Text(
-                                    product.fields.author,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 12.0
-                                    ),
-                                    textAlign: TextAlign.left,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 4),
-                                  child: Text(
-                                    product.fields.isBorrowed ? 'Not Avaible' : 'Avaible',
-                                    style: GoogleFonts.mochiyPopPOne(
-                                      textStyle : TextStyle(
-                                      fontSize: 10.0,
-                                      color: product.fields.isBorrowed ? Colors.red : Colors.green,
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            DetailGame(product: product),
                                       ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 125,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                          color: Colors.brown, width: 2),
                                     ),
-                                    textAlign: TextAlign.left,
+                                    child: Center(child: Text("Details")),
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ReviewScreen(product: product),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: 125,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                          color: Colors.brown, width: 2),
+                                    ),
+                                    child: Center(child: Text("Review")),
+                                  ),
+                                ),
+                              ]),
                         );
                       },
                     );
-                  }
-                },
-              ),
-            ),
-        ],
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(116, 240, 229, 210),
+                      border: Border.all(color: Colors.brown, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    margin: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(left: 4, right: 4),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          product.fields.imageLink,
+                          width: 100,
+                          height: 100,
+                          errorBuilder: (BuildContext context, Object exception,
+                              StackTrace? stackTrace) {
+                            return SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Center(
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Image not available",
+                                    style: GoogleFonts.mochiyPopPOne(),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          product.fields.title,
+                          style: const TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          product.fields.author,
+                          style: GoogleFonts.poppins(fontSize: 12.0),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          product.fields.isBorrowed ? 'Not Avaible' : 'Avaible',
+                          style: GoogleFonts.mochiyPopPOne(
+                            textStyle: TextStyle(
+                              fontSize: 10.0,
+                              color: snapshot.data![index].fields.isBorrowed
+                                  ? Colors.red
+                                  : Colors.green,
+                            ),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }
 }
-

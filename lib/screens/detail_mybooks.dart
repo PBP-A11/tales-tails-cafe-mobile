@@ -57,6 +57,7 @@ class MyBooksDetail extends StatelessWidget {
                     ),
                   );
 
+                  var usn;
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => MyBookPage(username: usn)),
