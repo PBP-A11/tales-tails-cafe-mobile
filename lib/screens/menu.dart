@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/admin_profile.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
 import 'package:tales_tails_cafe/screens/mybook.dart';
+import 'package:tales_tails_cafe/screens/profile_page.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
@@ -25,11 +27,13 @@ class MyHomePage extends StatelessWidget {
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Lihat Buku", Icons.add_shopping_cart),
         ShopItem("Logout", Icons.logout),
+        ShopItem("Profile", Icons.park_sharp)
       ];
     } else {
       return [
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Login", Icons.login),
+        ShopItem("Profile", Icons.park_sharp)
       ];
     }
   }
@@ -130,6 +134,9 @@ class ShopCard extends StatelessWidget {
           } else if (item.name == "Login") {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const LoginPage()));
+          } else if (item.name == "Profile") {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const UserProfilePages()));
           } else if (item.name == "Logout") {
             final response =
                 await request.logout("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");

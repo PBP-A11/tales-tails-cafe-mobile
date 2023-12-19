@@ -109,9 +109,9 @@ class _ProductPageState extends State<ProductPage> {
                 } else {
                   List<Product> searchedProducts = searchProducts(searchText, snapshot.data!);
                     return GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2, // Menampilkan 2 kolom
-                        childAspectRatio: 200/320,
+                        childAspectRatio: MediaQuery.of(context).size.width/650,
                         crossAxisSpacing: 8.0, // Spasi horizontal antara item
                         mainAxisSpacing: 8.0, // Spasi vertikal antara item
                       ),
@@ -121,7 +121,7 @@ class _ProductPageState extends State<ProductPage> {
                         return GestureDetector(
                           onTap: () {
                             // Navigasi ke halaman detail
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailGame(product: product),
