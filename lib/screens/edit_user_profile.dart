@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -17,7 +18,6 @@ class EditUserProfilePage extends StatefulWidget {
 class _EditUserProfilePageState extends State<EditUserProfilePage> {
     final _formKey = GlobalKey<FormState>();
     String _username = "";
-    
 
     @override
     Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                                                       ScaffoldMessenger.of(context)
                                                           .showSnackBar(const SnackBar(
                                                           content:
-                                                              Text("Terdapat kesalahan, silakan coba lagi."),
+                                                              Text("Username sudah dipakai."),
                                                       ));
                                                   }
                                               }

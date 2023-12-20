@@ -148,7 +148,8 @@ class ShopCard extends StatelessWidget {
               ));
             if (item.name == "My Books") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MyBookPage(username: 'a',))); //gimana cara ambil usernya
+
+                MaterialPageRoute(builder: (context) => const MyBookPage(username: usn,))); //gimana cara ambil usernya
             }
             if (item.name == "Lihat produk") {
               Navigator.push(context,
