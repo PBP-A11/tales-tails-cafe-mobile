@@ -24,7 +24,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse('https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/get-books/');
+    var url = Uri.parse('http://127.0.0.1:8000/catalog/get-books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
