@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/admin_profile.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/list_member.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
@@ -31,19 +32,38 @@ class _BottomNavState extends State<BottomNav> {
     });
   }
 
-  final List<Widget> _pages = [
-    MyHomePage(),
-    UserProfilePages(),
-    ProductPage(),
-    MemberListPage(),
-    BookFormPage(),
-  ];
+  List<Widget> getPages() {
+    if (isAdmin) {
+      return [
+        MyHomePage(),
+        AdminProfilePage(),
+        ProductPage(),
+        MemberListPage(),
+        BookFormPage(),
+      ];
+    } else {
+      return [
+        MyHomePage(),
+        UserProfilePages(),
+        ProductPage(),
+        MemberListPage(),
+        BookFormPage(),
+      ];
+    }
+  }
+  // final List<Widget> _pages = [
+  //   MyHomePage(),
+  //   UserProfilePages(),
+  //   ProductPage(),
+  //   MemberListPage(),
+  //   BookFormPage(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     if (loggedIn) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: getPages()[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
         border: Border(
@@ -77,7 +97,7 @@ class _BottomNavState extends State<BottomNav> {
     );
     } else {
       return Scaffold(
-      body: _pages[_selectedIndex],
+      body: getPages()[_selectedIndex],
       bottomNavigationBar: Container(
         color: Color.fromRGBO(226, 199, 153, 1),
         child: Padding(
