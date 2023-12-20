@@ -10,6 +10,7 @@ class OtherPage extends StatelessWidget {
       appBar: AppBar(
             title: Text(
                 'Change Username',
+                
                 style: GoogleFonts.mochiyPopPOne(
                   fontSize: 20,
                   color: Colors.brown
