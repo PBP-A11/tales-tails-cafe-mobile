@@ -1,7 +1,7 @@
 [![Staging](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/pre-release.yml)
 [![Release](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml/badge.svg)](https://github.com/PBP-A11/tales-tails-cafe-mobile/actions/workflows/release.yml)
-[![Build status](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)](https://install.appcenter.ms/orgs/travelogue/apps/travelogue/distribution_groups/public)
+[![Build status](https://build.appcenter.ms/v0.1/apps/9e46b3a5-8542-46e1-8e9d-a0f841142acc/branches/main/badge)](https://install.appcenter.ms/orgs/shopping-list-febrian-irv/apps/shopping-list/distribution_groups/public)
 
 # Tales & Tails Cafe 🏰🐈
 
