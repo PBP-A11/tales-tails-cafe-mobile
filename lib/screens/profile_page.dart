@@ -58,7 +58,7 @@ class _UserProfilePagesState extends State<UserProfilePages> {
         ),
       ),
       backgroundColor: Color.fromARGB(255, 240, 229, 210),
-      drawer: const LeftDrawer(),
+      //drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),

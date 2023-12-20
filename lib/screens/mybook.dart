@@ -47,7 +47,7 @@ Widget build(BuildContext context) {
         appBar: AppBar(
         title: const Text('Product'),
         ),
-        drawer: const LeftDrawer(),
+        //drawer: const LeftDrawer(),
         body: FutureBuilder(
             future: fetchProduct(widget.username),
             builder: (context, AsyncSnapshot snapshot) {

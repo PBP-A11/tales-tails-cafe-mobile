@@ -73,7 +73,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       ),
-      drawer: const LeftDrawer(),
+      //drawer: const LeftDrawer(),
       backgroundColor: Color.fromARGB(255, 241, 157, 0),
       body: Column(
         children: [
