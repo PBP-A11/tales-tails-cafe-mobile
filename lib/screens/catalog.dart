@@ -264,7 +264,7 @@ class _ProductPageState extends State<ProductPage> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 4),
                                   child: Text(
-                                    product.fields.isBorrowed ? 'Not Available' : 'Avaible',
+                                    product.fields.isBorrowed ? 'Not Available' : 'Available',
                                     style: GoogleFonts.mochiyPopPOne(
                                       textStyle : TextStyle(
                                       fontSize: 10.0,
