@@ -35,8 +35,8 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
       appBar: AppBar(
         title: Text('Admin Profile',
             style: GoogleFonts.mochiyPopPOne(
-                fontSize: 20, color: Color.fromARGB(255, 240, 229, 210))),
-        backgroundColor: Color.fromARGB(255, 200, 90, 53),
+                fontSize: 20, color: Colors.brown)),
+        backgroundColor: Color.fromARGB(255, 240, 229, 210),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
           child: Container(
@@ -48,8 +48,8 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 240, 229, 210),
-      drawer: const LeftDrawer(),
+      backgroundColor: Color.fromARGB(255, 241, 157, 0),
+      // drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -63,7 +63,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                   return const Column(
                     children: [
                       Text(
-                        "Tidak ada data user.",
+                        "Tidak ada data admin.",
                         style:
                             TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                       ),
@@ -137,14 +137,6 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    buildListTile(Icons.man, "List Of Borrower", () { // Ubah sesuai page berikutnya
-                      // () => Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => MyBookPage(
-                      //             username: '${snapshot.data!.username}')))),
-                    }),
-                    const SizedBox(height: 2),
                     buildListTile(Icons.exit_to_app, "Logout", () async {
                       final response = await request.logout(
                           "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");
@@ -180,8 +172,26 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
 Widget buildListTile(IconData icon, String title, VoidCallback onTap) {
   return ListTile(
     onTap: onTap,
-    leading: Icon(icon),
+    leading: Container(
+      width: 35,
+      height: 35,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(color: Colors.brown, width: 1),
+        color: Color.fromARGB(239, 240, 229, 210),
+      ),
+      child: Icon(icon, color: Colors.brown),
+    ),
     title: Text(title),
-    trailing: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey),
+    trailing: Container(
+      width: 35,
+      height: 35,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(color: Colors.brown, width: 1),
+        color: Color.fromARGB(239, 240, 229, 210),
+      ),
+      child: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.brown),
+    ),
   );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/admin_profile.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/list_member.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
@@ -73,7 +74,7 @@ class _BottomNavState extends State<BottomNav> {
     } else {
       return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Container(g
         color: Color.fromARGB(255, 240, 229, 210),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),

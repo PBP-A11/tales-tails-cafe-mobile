@@ -48,6 +48,7 @@ Widget build(BuildContext context) {
           title: const Text('List of Borrowed Books'),
           backgroundColor: Color.fromARGB(255, 240, 229, 210),
           centerTitle: true, // Set this property to true
+
           foregroundColor: Color.fromRGBO(114, 78, 43, 1),
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
@@ -59,6 +60,7 @@ Widget build(BuildContext context) {
                           width: 4))), // Ubah warna garis sesuai keinginan
             ),
           ),
+
         ),
         backgroundColor: Color.fromARGB(255, 241, 157, 0),
         //drawer: const LeftDrawer(),
@@ -74,6 +76,7 @@ Widget build(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
@@ -169,6 +172,7 @@ Center(
     ),
   ),
 ),
+
           ],
         ),
       ),
