@@ -26,6 +26,7 @@ class OtherPage extends StatelessWidget {
                           color: Colors.brown,
                           width: 4))), // Ubah warna garis sesuai keinginan
           ),
+           
         ),
         ),
       body: EditUserProfilePage()
