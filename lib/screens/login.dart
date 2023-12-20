@@ -1,10 +1,13 @@
 import 'package:tales_tails_cafe/screens/menu.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+
 import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 import 'package:tales_tails_cafe/screens/register.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 
 void main() {
   runApp(const LoginApp());
@@ -164,6 +167,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
   TextField buildStyledTextField(
       TextEditingController controller, String label, IconData icon,
       {bool isPassword = false}) {
@@ -202,4 +206,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
 }
