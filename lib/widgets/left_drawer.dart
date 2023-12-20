@@ -68,20 +68,6 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ],
-          if (loggedIn && isAdmin) ... [
-          ListTile(
-            leading: const Icon(Icons.man),
-            title: const Text('List of Borrower'),
-            // Bagian redirection ke MyHomePage
-            onTap: () {
-              // Navigator.pushReplacement(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => (),
-              //     ));
-            },
-          ),
-          ],
           ListTile(
             leading: Icon(
                 loggedIn ? Icons.logout_outlined : Icons.login_outlined),

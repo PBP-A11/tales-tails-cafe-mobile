@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:tales_tails_cafe/models/books.dart';
+import 'package:tales_tails_cafe/screens/review_screen.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/detail_book.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +26,7 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Future<List<Product>> fetchProduct() async {
-    var url = Uri.parse('https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/get-books/');
+    var url = Uri.parse('http://127.0.0.1:8000/catalog/get-books/');
     var response = await http.get(
       url,
       headers: {"Content-Type": "application/json"},
@@ -72,7 +73,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       ),
-      drawer: const LeftDrawer(),
+      //drawer: const LeftDrawer(),
       backgroundColor: Color.fromARGB(255, 241, 157, 0),
       body: Column(
         children: [
@@ -120,12 +121,82 @@ class _ProductPageState extends State<ProductPage> {
                         Product product = searchedProducts[index];
                         return GestureDetector(
                           onTap: () {
+                            // // Navigasi ke halaman detail
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => DetailGame(product: product),
+                            //   ),
+                            // );
                             // Navigasi ke halaman detail
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailGame(product: product),
+                            showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.brown),
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15)),
                               ),
+                              context: context,
+                              builder: (context) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xfffefadd),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(15),
+                                        topRight: Radius.circular(15)),
+                                    border: Border.all(color: Colors.brown, width: 5),
+                                  ),
+                                  height: 200,
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailGame(product: product),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 125,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  color: Colors.brown, width: 2),
+                                            ),
+                                            child: Center(child: Text("Details")),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ReviewScreen(product: product),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 125,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(15),
+                                              border: Border.all(
+                                                  color: Colors.brown, width: 2),
+                                            ),
+                                            child: Center(child: Text("Review")),
+                                          ),
+                                        ),
+                                      ]),
+                                );
+                              },
                             );
                           },
                           child: Container(

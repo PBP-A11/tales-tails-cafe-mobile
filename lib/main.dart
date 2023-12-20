@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/menu.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 
 
 
@@ -41,9 +43,10 @@ class MyApp extends StatelessWidget {
           // This works for code too, not just values: Most code changes can be
           // tested with just a hot reload.
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+          textTheme: GoogleFonts.mochiyPopPOneTextTheme(Theme.of(context).textTheme),
           useMaterial3: true,
         ),
-        home: MyHomePage(),
+        home: BottomNav(),
       )
     );
   }

@@ -3,7 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
+
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
+import 'package:tales_tails_cafe/screens/register.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 void main() {
   runApp(const LoginApp());
@@ -38,33 +42,43 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool passToggle = false;
 
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(
+          'Login',
+          style: GoogleFonts.mochiyPopPOne(),
+        ),
+        backgroundColor: Color.fromARGB(255, 240, 229, 210),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0),
+          child: Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: Colors.brown,
+                        width: 4))),
+          ),
+        ),
       ),
+      backgroundColor: Color.fromARGB(255, 241, 157, 0),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: _usernameController,
-              decoration: const InputDecoration(
-                labelText: 'Username',
-              ),
-            ),
-            const SizedBox(height: 12.0),
-            TextField(
-              controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-              ),
-              obscureText: true,
-            ),
+                  const SizedBox(height: 30),
+                  buildStyledTextField(
+                    _usernameController, 'Username', Icons.person
+                  ),
+                  const SizedBox(height: 20),
+                  buildStyledTextField(
+                    _passwordController, 'Password', Icons.lock, isPassword: true
+                  ),
             const SizedBox(height: 24.0),
             ElevatedButton(
               onPressed: () async {
@@ -75,11 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                 // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
                 // Untuk menyambungkan Android emulator dengan Django pada localhost,
                 // gunakan URL http://10.0.2.2/
-                final response =
-                    await request.login("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/login/", {
-                  'username': username,
-                  'password': password,
-                });
+                final response = await request.login(
+                    "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/login/",
+                    {
+                      'username': username,
+                      'password': password,
+                    });
 
                 if (request.loggedIn) {
                   loggedIn = true;
@@ -93,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                   }
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                    MaterialPageRoute(builder: (context) => BottomNav()),
                   );
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
@@ -117,11 +132,79 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 }
               },
-              child: const Text('Login'),
+              style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(239, 240, 229, 210),
+                      side: BorderSide(color: Colors.brown, width: 2),
+                    ),
+                    child: const Text('Login', style: TextStyle(fontSize: 15, color: Colors.black)),
+
+            ),
+            const SizedBox(height: 15.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Don't have an account?",
+                  style: TextStyle(color: Colors.black, fontSize: 14),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
+                  },
+                  child: const Text(
+                    "Register Now",
+                    style: TextStyle(color: Color.fromARGB(255, 200, 90, 53)
+)
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
+  TextField buildStyledTextField(
+      TextEditingController controller, String label, IconData icon,
+      {bool isPassword = false}) {
+    return TextField(
+      controller: controller,
+      obscureText: isPassword ? !passToggle : false,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Color.fromARGB(255, 240, 229, 210),
+        hintText: label,
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.brown),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Colors.brown, width: 4.0)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Colors.brown, width: 2.0)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Colors.brown, width: 2.0)),
+        prefixIcon: Icon(icon, color: Colors.brown),
+        suffixIcon: isPassword
+            ? InkWell(
+                onTap: () {
+                  setState(() {
+                    passToggle = !passToggle;
+                  });
+                },
+                child: Icon(
+                  passToggle ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.brown,
+                ),
+              )
+            : null,
+      ),
+    );
+  }
+
 }

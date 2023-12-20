@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -108,7 +110,7 @@ class DetailGame extends StatelessWidget {
                     ),      
                     onPressed: () async {
                       final response = await request.get(
-                          "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/book-borrowed-flutter/${product.pk}");
+                          "http://127.0.0.1:8000/catalog/book-borrowed-flutter/${product.pk}");
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
@@ -141,6 +143,41 @@ class DetailGame extends StatelessWidget {
                       style: TextStyle(color: Colors.black),
                       ))),
             SizedBox(height: 20),
+
+            Center(
+                child: ElevatedButton(
+                    onPressed: () async {
+                      final response = await request.get(
+                          "http://127.0.0.1:8000/catalog/delete-book-flutter/${product.pk}");
+                      if (response['status'] == 'success') {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Buku berhasil dihapus"),
+                        ));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductPage()),
+                        );
+                      } else if (response['status'] == 'error') {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Buku tidak ditemukan"),
+                        ));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductPage()),
+                        );
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      }
+                    },
+                    child: const Text("Delete Book"))),
+                    SizedBox(height: 20)
           ],
         ),
       ),
