@@ -46,7 +46,12 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 2.0, color: Colors.brown), // Atur warna dan lebar sesuai keinginan
+        ),
         color: Color.fromARGB(255, 240, 229, 210),
+        ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
           child: GNav(
