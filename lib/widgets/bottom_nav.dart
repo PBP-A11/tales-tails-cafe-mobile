@@ -45,11 +45,16 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: Color.fromRGBO(226, 199, 153, 1),
+        decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 4.0, color: Colors.brown), // Atur warna dan lebar sesuai keinginan
+        ),
+        color: Color.fromARGB(255, 240, 229, 210),
+      ),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
           child: GNav(
-            backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+            backgroundColor: Color.fromARGB(255, 240, 229, 210),
             color: Color.fromRGBO(154, 59, 59, 1),
             activeColor: Color.fromRGBO(154, 59, 59, 1),
             gap: 20,

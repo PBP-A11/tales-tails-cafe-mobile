@@ -158,7 +158,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 400,
+
+                      height: 250,
+
                       width: double.infinity,
                       child: FutureBuilder(
                         future: fetchReview(request, widget.product.pk),
@@ -207,7 +209,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             ),
+
                                             if (isAdmin ?? false)
+
                                             PopupMenuButton(
                                                 icon: const Icon(
                                                   Icons.more_vert_rounded,

@@ -31,6 +31,15 @@ class MyHomePage extends StatelessWidget {
         ShopItem("My Books", Icons.bookmark_border),
         ShopItem("Logout", Icons.logout),
       ];
+
+    } else if(loggedIn){
+      return [
+        ShopItem("Catalog", Icons.book),
+        ShopItem("Lihat Buku", Icons.add_shopping_cart),
+        ShopItem("Logout", Icons.logout),
+        ShopItem("Profile", Icons.park_sharp)
+      ];
+
     } else {
       return [
         ShopItem("Catalog", Icons.checklist),
@@ -60,8 +69,18 @@ class MyHomePage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+        backgroundColor: Color.fromARGB(255, 240, 229, 210),
         foregroundColor: Color.fromRGBO(114, 78, 43, 1),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
+          child: Container(
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                        color: Colors.brown,
+                        width: 4))), // Ubah warna garis sesuai keinginan
+          ),
+        ),
       ),
       //drawer: LeftDrawer(),
       //bottomNavigationBar: BottomNav(),
@@ -125,26 +144,22 @@ class ShopCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20)
       ),
       child: Material(
-        color: Color.fromRGBO(219, 188, 127, 1),
+        color: Color.fromARGB(255, 240, 229, 210),
         borderRadius: BorderRadius.circular(15),
         elevation: 10,
         child: InkWell(
           // Area responsive terhadap sentuhan
           onTap: () async {
             // Memunculkan SnackBar ketika diklik
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!"),
-                backgroundColor: getColorDependsItem(item.name),
-              ));
+            
             if (item.name == "My Books") {
             Navigator.push(context,
+
                 MaterialPageRoute(builder: (context) => MyBookPage(username: usn))); //gimana cara ambil usernya
             }
-            if (item.name == "Lihat produk") {
+            if (item.name == "Add Book") {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const UserProfilePages()));
+                  MaterialPageRoute(builder: (context) => const BookFormPage()));
             } else if (item.name == "Catalog") {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 2,)));

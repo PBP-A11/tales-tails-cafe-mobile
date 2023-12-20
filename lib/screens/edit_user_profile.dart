@@ -30,12 +30,11 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                 'Change Username',
                 style: GoogleFonts.mochiyPopPOne(
                   fontSize: 20,
-                  color: Color.fromARGB(255, 240, 229, 210)
+                  color: Colors.brown
                 ),
             ),
-            backgroundColor: Color.fromARGB(255, 118, 192, 221),
-            foregroundColor: Color.fromARGB(255, 240, 229, 210),
-            bottom: PreferredSize(
+           backgroundColor: Color.fromARGB(255, 240, 229, 210),
+          bottom: PreferredSize(
             preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
             child: Container(
               decoration: const BoxDecoration(
@@ -46,7 +45,7 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
           ),
         ),
         ),
-        backgroundColor: Color.fromARGB(255, 240, 229, 210),
+        backgroundColor: Color.fromARGB(255, 241, 157, 0),
         body: Form(
             key: _formKey,
             child: SingleChildScrollView(
@@ -57,8 +56,10 @@ class _EditUserProfilePageState extends State<EditUserProfilePage> {
                             padding: const EdgeInsets.all(30.0),
                             child: TextFormField(
                                 decoration: InputDecoration(
-                                hintText: "Username",
-                                labelText: "Username",
+                                  filled: true,
+                                  fillColor: Color.fromARGB(255, 240, 229, 210),
+                                  hintText: "Username",
+                                  labelText: "Username",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                     borderSide: const BorderSide(color: Colors.brown, width: 4.0),

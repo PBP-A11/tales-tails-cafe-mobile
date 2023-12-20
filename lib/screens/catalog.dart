@@ -141,10 +141,10 @@ class _ProductPageState extends State<ProductPage> {
                               builder: (context) {
                                 return Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xfffefadd),
+                                    color: Color.fromARGB(255, 240, 229, 210),
                                     borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(15),
-                                        topRight: Radius.circular(15)),
+                                        topLeft: Radius.circular(40),
+                                        topRight: Radius.circular(40)),
                                     border: Border.all(color: Colors.brown, width: 5),
                                   ),
                                   height: 200,
@@ -154,7 +154,7 @@ class _ProductPageState extends State<ProductPage> {
                                       children: [
                                         InkWell(
                                           onTap: () {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
@@ -175,7 +175,7 @@ class _ProductPageState extends State<ProductPage> {
                                         ),
                                         InkWell(
                                           onTap: () {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>

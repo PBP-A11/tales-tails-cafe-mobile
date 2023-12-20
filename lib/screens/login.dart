@@ -106,9 +106,10 @@ class _LoginPageState extends State<LoginPage> {
                   } else {
                     isAdmin = false;
                   }
-                  Navigator.pushReplacement(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => BottomNav()),
+                    (route) => false
                   );
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
