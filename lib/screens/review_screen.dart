@@ -158,7 +158,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 400,
+                      height: 350,
                       width: double.infinity,
                       child: FutureBuilder(
                         future: fetchReview(request, widget.product.pk),
