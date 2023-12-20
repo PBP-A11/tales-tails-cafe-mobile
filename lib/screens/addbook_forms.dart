@@ -198,7 +198,7 @@ class _BookFormPageState extends State<BookFormPage> {
                           // Kirim ke Django dan tunggu respons
                           final response = await request.postJson(
 
-                          "http://127.0.0.1:8000/catalog/add-book-flutter/",
+                          "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/add-book-flutter/",
 
                           jsonEncode(<String, String>{
                               'title': _title,

@@ -47,7 +47,7 @@ class MyBooksDetail extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 final response = await http.get(
-                  Uri.parse("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/mybooks/book-return/${product.pk}"),
+                  Uri.parse("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/mybooks/book-return-flutter/${product.pk}"),
                 );
 
                 if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ class MyBooksDetail extends StatelessWidget {
                     const SnackBar(
                       content: Text("Buku berhasil dikembalikan!"),
                     ),
-                  );
+                  ); 
 
                   Navigator.pushReplacement(
                     context,

@@ -110,7 +110,7 @@ class DetailGame extends StatelessWidget {
                     ),      
                     onPressed: () async {
                       final response = await request.get(
-                          "http://127.0.0.1:8000/catalog/book-borrowed-flutter/${product.pk}");
+                          "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/book-borrowed-flutter/${product.pk}");
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
@@ -148,7 +148,7 @@ class DetailGame extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () async {
                       final response = await request.get(
-                          "http://127.0.0.1:8000/catalog/delete-book-flutter/${product.pk}");
+                          "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
