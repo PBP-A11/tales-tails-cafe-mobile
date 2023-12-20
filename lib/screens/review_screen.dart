@@ -7,6 +7,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/models/book_review.dart';
 import 'package:tales_tails_cafe/models/books.dart';
+import 'package:tales_tails_cafe/screens/login.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 
 class ReviewScreen extends StatefulWidget {
@@ -157,7 +158,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 300,
+                      height: 400,
                       width: double.infinity,
                       child: FutureBuilder(
                         future: fetchReview(request, widget.product.pk),
@@ -206,6 +207,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             ),
+                                            if (isAdmin ?? false)
                                             PopupMenuButton(
                                                 icon: const Icon(
                                                   Icons.more_vert_rounded,
