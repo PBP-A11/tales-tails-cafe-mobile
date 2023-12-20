@@ -114,16 +114,20 @@ class _ReviewScreenState extends State<ReviewScreen> {
   @override
   Widget build(BuildContext context) {
     CookieRequest request = context.watch<CookieRequest>();
+
+    double screenHeight = MediaQuery.of(context).size.height;
+    double reviewListHeight = screenHeight * 0*2;
+    double reviewContainerHeight = screenHeight * 0.4;
     return Scaffold(
-      backgroundColor: Color(0xfff39b00),
+      backgroundColor: const Color(0xfff39b00),
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: Color(0xfffefadd),
+        backgroundColor: const Color(0xfffefadd),
         centerTitle: true,
         title: Text(
           'Review',
@@ -146,153 +150,159 @@ class _ReviewScreenState extends State<ReviewScreen> {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: 200,
-                width: double.infinity,
-                child: FutureBuilder(
-                  future: fetchReview(request, widget.product.pk),
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.brown,
-                        ),
-                      );
-                    } else {
-                      if (snapshot.data!.isEmpty) {
-                        return Center(
-                          child: Text("Belum ada review..."),
-                        );
-                      }
-                      return ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: snapshot.data!.length,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(
-                            width: 10,
-                          );
-                        },
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 300,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: Colors.brown, width: 4),
-                              color: Color(0xfffefadd),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        snapshot.data![index].user!,
-                                        style: TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      PopupMenuButton(
-                                          icon: Icon(
-                                            Icons.more_vert_rounded,
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 250,
+                      width: double.infinity,
+                      child: FutureBuilder(
+                        future: fetchReview(request, widget.product.pk),
+                        builder: (context, snapshot) {
+                          if (snapshot.data == null) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.brown,
+                              ),
+                            );
+                          } else {
+                            if (snapshot.data!.isEmpty) {
+                              return const Center(
+                                child: Text("Belum ada review..."),
+                              );
+                            }
+                            return ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data!.length,
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(
+                                  width: 10,
+                                );
+                              },
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 300,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(color: Colors.brown, width: 4),
+                                    color: const Color(0xfffefadd),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              snapshot.data![index].user!,
+                                              style: const TextStyle(
+                                                  color: Colors.brown,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            PopupMenuButton(
+                                                icon: const Icon(
+                                                  Icons.more_vert_rounded,
+                                                  color: Colors.brown,
+                                                ),
+                                                color: const Color(0xfffefadd),
+                                                onSelected: (String choice) {
+                                                  if (choice == 'Edit') {
+                                                    setState(() {
+                                                      starsReview =
+                                                          snapshot.data![index].stars;
+                                                      reviewTextfield.text = snapshot
+                                                              .data![index].content ??
+                                                          "";
+                                                      reviewId =
+                                                          snapshot.data![index].pk;
+                                                      isEdit = true;
+                                                    });
+                                                  } else if (choice == 'Delete') {
+                                                    deleteReview(request,
+                                                        snapshot.data![index].pk!);
+                                                  }
+                                                },
+                                                itemBuilder: (BuildContext context) {
+                                                  return ['Edit', 'Delete']
+                                                      .map((String choice) {
+                                                    return PopupMenuItem<String>(
+                                                      value: choice,
+                                                      child: Text(
+                                                        choice,
+                                                        style: const TextStyle(
+                                                            color: Colors.black),
+                                                      ),
+                                                    );
+                                                  }).toList();
+                                                }),
+                                          ],
+                                        ),
+                                        Text(
+                                          snapshot.data![index].dateAdded!,
+                                          style: const TextStyle(
+                                            fontSize: 14,
                                             color: Colors.brown,
                                           ),
-                                          color: Color(0xfffefadd),
-                                          onSelected: (String choice) {
-                                            if (choice == 'Edit') {
-                                              setState(() {
-                                                starsReview =
-                                                    snapshot.data![index].stars;
-                                                reviewTextfield.text = snapshot
-                                                        .data![index].content ??
-                                                    "";
-                                                reviewId =
-                                                    snapshot.data![index].pk;
-                                                isEdit = true;
-                                              });
-                                            } else if (choice == 'Delete') {
-                                              deleteReview(request,
-                                                  snapshot.data![index].pk!);
-                                            }
-                                          },
-                                          itemBuilder: (BuildContext context) {
-                                            return ['Edit', 'Delete']
-                                                .map((String choice) {
-                                              return PopupMenuItem<String>(
-                                                value: choice,
-                                                child: Text(
-                                                  choice,
-                                                  style: const TextStyle(
-                                                      color: Colors.black),
-                                                ),
-                                              );
-                                            }).toList();
-                                          }),
-                                    ],
-                                  ),
-                                  Text(
-                                    snapshot.data![index].dateAdded!,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.brown,
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              "Stars : ",
+                                              style: TextStyle(
+                                                  color: Colors.brown,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            RatingBarIndicator(
+                                              rating: snapshot.data![index].stars!
+                                                  .toDouble(),
+                                              itemBuilder: (context, index) => const Icon(
+                                                Icons.star,
+                                                color: Colors.amber,
+                                              ),
+                                              itemCount: 5,
+                                              itemSize: 16.0,
+                                              direction: Axis.horizontal,
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          snapshot.data![index].content!,
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.justify,
+                                          style: const TextStyle(
+                                              color: Colors.brown,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "Stars : ",
-                                        style: TextStyle(
-                                            color: Colors.brown,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      RatingBarIndicator(
-                                        rating: snapshot.data![index].stars!
-                                            .toDouble(),
-                                        itemBuilder: (context, index) => Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        itemCount: 5,
-                                        itemSize: 16.0,
-                                        direction: Axis.horizontal,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    snapshot.data![index].content!,
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                        color: Colors.brown,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
+                                );
+                              },
+                            );
+                          }
                         },
-                      );
-                    }
-                  },
-                ),
+                      ),
+                    ),
+                  ],)
               ),
-              SizedBox(
+
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -301,7 +311,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.brown, width: 4),
-                  color: Color(0xfffefadd),
+                  color: const Color(0xfffefadd),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -333,7 +343,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                             },
                             inputDecorationTheme: InputDecorationTheme(
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                         color: Colors.brown, width: 2),
                                     borderRadius: BorderRadius.circular(15))),
                             menuHeight: 120,
@@ -347,14 +357,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                       Colors.brown.withOpacity(0.5),
                                     ),
                                     backgroundColor: MaterialStateProperty.all(
-                                      Color(0xfffefadd),
+                                      const Color(0xfffefadd),
                                     ),
                                   ),
                                   value: value,
                                   label: value.toString());
                             }).toList(),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextField(
@@ -364,23 +374,23 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                 const TextStyle(height: 1), // Adjust as needed
                             decoration: InputDecoration(
                               labelText: "Your review ...",
-                              labelStyle: TextStyle(color: Colors.brown),
+                              labelStyle: const TextStyle(color: Colors.brown),
                               alignLabelWithHint: true,
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(width: 2, color: Colors.brown),
+                                    const BorderSide(width: 2, color: Colors.brown),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.brown, width: 1),
+                                    const BorderSide(color: Colors.brown, width: 1),
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       InkWell(
@@ -397,7 +407,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           width: 125,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: Color(0xfffefadd),
+                            color: const Color(0xfffefadd),
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(color: Colors.brown, width: 3),
                           ),
