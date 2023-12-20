@@ -163,50 +163,18 @@ class DetailGame extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       }
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                    }
                     },
-                    child: const Text(
-                      "Borrow Book",
+                    child: Text(
+                      isAdmin && loggedIn ? "Delete" : "Borrow book",
                       style: TextStyle(color: Colors.black),
                       ))),
             SizedBox(height: 20),
-
-//             Center(
-//                 child: ElevatedButton(
-//                     onPressed: () async {
-//                       final response = await request.get(
-//                           "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
-//                       if (response['status'] == 'success') {
-//                         ScaffoldMessenger.of(context)
-//                             .showSnackBar(const SnackBar(
-//                           content: Text("Buku berhasil dihapus"),
-//                         ));
-//                         Navigator.pushReplacement(
-//                           context,
-//                           MaterialPageRoute(
-//                               builder: (context) => ProductPage()),
-//                         );
-//                       } else if (response['status'] == 'error') {
-//                         ScaffoldMessenger.of(context)
-//                             .showSnackBar(const SnackBar(
-//                           content: Text("Buku tidak ditemukan"),
-//                         ));
-//                         Navigator.pushReplacement(
-//                           context,
-//                           MaterialPageRoute(
-//                               builder: (context) => ProductPage()),
-//                         );
-//                       } else {
-//                         Navigator.pushReplacement(
-//                           context,
-//                           MaterialPageRoute(builder: (context) => LoginPage()),
-//                         );
-//                     }
-//                     },
-//                     child: Text(
-//                       isAdmin && loggedIn ? "Delete" : "Borrow book",
-//                       style: TextStyle(color: Colors.black),
-//                       ))),
-//             SizedBox(height: 20),
             // Center(
             //     child: ElevatedButton(
             //         onPressed: () async {
