@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/admin_profile.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:tales_tails_cafe/screens/list_member.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
@@ -79,6 +80,7 @@ class _BottomNavState extends State<BottomNav> {
           padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
           child: GNav(
             backgroundColor: Color.fromARGB(255, 240, 229, 210),
+
             color: Color.fromRGBO(154, 59, 59, 1),
             activeColor: Color.fromRGBO(154, 59, 59, 1),
             onTabChange: (value) {

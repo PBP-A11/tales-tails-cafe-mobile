@@ -59,6 +59,7 @@ Widget build(BuildContext context) {
                           width: 4))), // Ubah warna garis sesuai keinginan
             ),
           ),
+
         ),
         backgroundColor: Color.fromARGB(255, 241, 157, 0),
         //drawer: const LeftDrawer(),
@@ -74,6 +75,7 @@ Widget build(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
@@ -86,6 +88,7 @@ Widget build(BuildContext context) {
                 ),
               ),
             ),
+
           ),
           SizedBox(height: 8),
         ],
@@ -169,6 +172,7 @@ Center(
     ),
   ),
 ),
+
           ],
         ),
       ),

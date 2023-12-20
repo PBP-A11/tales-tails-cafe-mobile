@@ -27,10 +27,9 @@ class _EditAdminPageState extends State<EditAdminPage> {
         title: Text(
           'Change Name',
           style: GoogleFonts.mochiyPopPOne(
-              fontSize: 20, color: Color.fromARGB(255, 240, 229, 210)),
+              fontSize: 20, color: Colors.brown),
         ),
-        backgroundColor: Color.fromARGB(255, 200, 90, 53),
-        foregroundColor: Color.fromARGB(255, 240, 229, 210),
+        backgroundColor: Color.fromARGB(255, 240, 229, 210),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
           child: Container(
@@ -42,7 +41,7 @@ class _EditAdminPageState extends State<EditAdminPage> {
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 240, 229, 210),
+      backgroundColor: Color.fromARGB(255, 241, 157, 0),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -118,6 +117,8 @@ TextFormField buildTextField(
     String label, IconData icon, Function(String) onSaved) {
   return TextFormField(
     decoration: InputDecoration(
+      filled: true,
+      fillColor: Color.fromARGB(255, 240, 229, 210),
       hintText: label,
       labelText: label,
       border: OutlineInputBorder(
