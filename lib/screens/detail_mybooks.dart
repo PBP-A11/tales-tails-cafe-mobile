@@ -55,7 +55,7 @@ class MyBooksDetail extends StatelessWidget {
                     const SnackBar(
                       content: Text("Buku berhasil dikembalikan!"),
                     ),
-                  );
+                  ); 
 
                   Navigator.pushReplacement(
                     context,
