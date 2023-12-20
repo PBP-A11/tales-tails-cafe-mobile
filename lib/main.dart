@@ -7,6 +7,7 @@ import 'package:tales_tails_cafe/screens/menu.dart';
 
 
 void main() {
+  
   runApp(const MyApp());
 }
 
@@ -46,6 +47,8 @@ class MyApp extends StatelessWidget {
       )
     );
   }
+
+  
 }
 
 

@@ -159,7 +159,7 @@ class ShopCard extends StatelessWidget {
             } 
           } else if(item.name == "Lihat Buku") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyBookPage(username: usn)));
+                MaterialPageRoute(builder: (context) => MyBookPage(username: usn,)));
           }
         },
         child: Container(
