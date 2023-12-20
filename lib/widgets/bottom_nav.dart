@@ -45,7 +45,7 @@ class _BottomNavState extends State<BottomNav> {
       bottomNavigationBar: Container(
         color: Color.fromRGBO(226, 199, 153, 1),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(80, 2, 80, 2),
+          padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
           child: GNav(
             backgroundColor: Color.fromRGBO(226, 199, 153, 1),
             color: Color.fromRGBO(154, 59, 59, 1),
