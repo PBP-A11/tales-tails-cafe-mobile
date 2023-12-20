@@ -31,18 +31,10 @@ class MyHomePage extends StatelessWidget {
         ShopItem("My Books", Icons.bookmark_border),
         ShopItem("Logout", Icons.logout),
       ];
-    } else if(loggedIn){
-      return [
-        ShopItem("Lihat Item", Icons.checklist),
-        ShopItem("Lihat Buku", Icons.add_shopping_cart),
-        ShopItem("Logout", Icons.logout),
-        ShopItem("Profile", Icons.park_sharp)
-      ];
     } else {
       return [
-        ShopItem("Lihat Item", Icons.checklist),
+        ShopItem("Catalog", Icons.checklist),
         ShopItem("Login", Icons.login),
-        ShopItem("Profile", Icons.park_sharp)
       ];
     }
   }
