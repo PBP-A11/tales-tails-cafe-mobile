@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tales_tails_cafe/screens/addbook_forms.dart';
+import 'package:tales_tails_cafe/screens/admin_profile.dart';
 import 'package:tales_tails_cafe/screens/login.dart';
 import 'package:tales_tails_cafe/screens/mybook.dart';
-import 'package:tales_tails_cafe/screens/profile_user.dart';
+import 'package:tales_tails_cafe/screens/profile_page.dart';
 import 'package:tales_tails_cafe/widgets/book_card.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/screens/catalog.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 
 
 class MyHomePage extends StatelessWidget {
@@ -15,10 +17,18 @@ class MyHomePage extends StatelessWidget {
 
    List<ShopItem> get items {
     // Change to a getter
-    if (loggedIn && isAdmin) {
+    if (loggedIn) {
+      if (isAdmin){
+        return [
+        ShopItem("Catalog", Icons.book),
+        ShopItem("Add Book", Icons.dashboard_customize),
+        ShopItem("List Member", Icons.people),
+        ShopItem("Logout", Icons.logout),
+      ];
+      }
       return [
-        ShopItem("Lihat Item", Icons.checklist),
-        ShopItem("Tambah Item", Icons.add_shopping_cart),
+        ShopItem("Catalog", Icons.book),
+        ShopItem("My Books", Icons.bookmark_border),
         ShopItem("Logout", Icons.logout),
       ];
     } else if(loggedIn){
@@ -26,11 +36,13 @@ class MyHomePage extends StatelessWidget {
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Lihat Buku", Icons.add_shopping_cart),
         ShopItem("Logout", Icons.logout),
+        ShopItem("Profile", Icons.park_sharp)
       ];
     } else {
       return [
         ShopItem("Lihat Item", Icons.checklist),
         ShopItem("Login", Icons.login),
+        ShopItem("Profile", Icons.park_sharp)
       ];
     }
   }
@@ -51,12 +63,17 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Tales & Tails Cafe',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Color.fromRGBO(114, 78, 43, 1),
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        backgroundColor: Colors.indigo,
-        foregroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+        foregroundColor: Color.fromRGBO(114, 78, 43, 1),
       ),
-      drawer: LeftDrawer(),
+      //drawer: LeftDrawer(),
+      //bottomNavigationBar: BottomNav(),
+      backgroundColor: Color.fromRGBO(243, 155, 0, 1),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
@@ -68,11 +85,12 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 // Widget Text untuk menampilkan tulisan dengan alignment center dan style yang sesuai
                 child: Text(
-                  'PBP Shop', // Text yang menandakan toko
+                  'Passion for Books\n Purrfection for Cats', // Text yang menandakan toko
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(114, 78, 43, 1),
                   ),
                 ),
               ),
@@ -83,7 +101,7 @@ class MyHomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                crossAxisCount: 3,
+                crossAxisCount: 2,
                 shrinkWrap: true,
                 children: items.map((ShopItem item) {
                   // Iterasi untuk setiap item
@@ -106,75 +124,86 @@ class ShopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-    return Material(
-      color: Colors.indigo,
-      child: InkWell(
-        // Area responsive terhadap sentuhan
-        onTap: () async {
-          // Memunculkan SnackBar ketika diklik
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-              content: Text("Kamu telah menekan tombol ${item.name}!"),
-              backgroundColor: getColorDependsItem(item.name),
-            ));
-          if (item.name == "Tambah Item") {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const BookFormPage()));
-          }
-          if (item.name == "Lihat produk") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProductPage()));
-          } else if (item.name == "Lihat Item") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProductPage()));
-          } else if (item.name == "Login") {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const LoginPage()));
-          } else if (item.name == "Logout") {
-            final response =
-                await request.logout("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");
-            String message = response["message"];
-            loggedIn = false;
-            isAdmin = false;
-            if (response['status']) {
-              String uname = response["username"];
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("$message Sampai jumpa, $uname."),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Color.fromRGBO(114, 78, 43, 1), // Set the border color here
+          width: 5.0,
+        ),
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: Material(
+        color: Color.fromRGBO(219, 188, 127, 1),
+        borderRadius: BorderRadius.circular(15),
+        elevation: 10,
+        child: InkWell(
+          // Area responsive terhadap sentuhan
+          onTap: () async {
+            // Memunculkan SnackBar ketika diklik
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(SnackBar(
+                content: Text("Kamu telah menekan tombol ${item.name}!"),
+                backgroundColor: getColorDependsItem(item.name),
               ));
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MyHomePage()),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("$message"),
-              ));
-            } 
-          } else if(item.name == "Lihat Buku") {
+            if (item.name == "My Books") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => MyBookPage(username: usn,)));
-          }
-        },
-        child: Container(
-          // Container untuk menyimpan Icon dan Text
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: Colors.white,
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
+                MaterialPageRoute(builder: (context) => const MyBookPage(username: 'a',))); //gimana cara ambil usernya
+            }
+            if (item.name == "Lihat produk") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const UserProfilePages()));
+            } else if (item.name == "Catalog") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 2,)));
+            } else if (item.name == "List Member") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 3,)));
+            } else if (item.name == "Login") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
+            } else if (item.name == "Logout") {
+              final response =
+                  await request.logout("https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/auth/logout/");
+              String message = response["message"];
+              loggedIn = false;
+              isAdmin = false;
+              if (response['status']) {
+                String uname = response["username"];
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("$message Sampai jumpa, $uname."),
+                ));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNav(initialIndex: 0)),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("$message"),
+                ));
+              }
+            }
+          },
+          child: Container(
+            // Container untuk menyimpan Icon dan Text
+            padding: const EdgeInsets.all(8),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    item.icon,
+                    color: Color.fromRGBO(114, 78, 43, 1),
+                    size: 30.0,
+                  ),
+                  const Padding(padding: EdgeInsets.all(3)),
+                  Text(
+                    item.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Color.fromRGBO(114, 78, 43, 1)),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
