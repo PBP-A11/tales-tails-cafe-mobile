@@ -48,6 +48,18 @@ Widget build(BuildContext context) {
           title: const Text('List of Borrowed Books'),
           backgroundColor: Color.fromARGB(255, 240, 229, 210),
           centerTitle: true, // Set this property to true
+          foregroundColor: Color.fromRGBO(114, 78, 43, 1),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.brown,
+                          width: 4))), // Ubah warna garis sesuai keinginan
+            ),
+          ),
+
         ),
         backgroundColor: Color.fromARGB(255, 241, 157, 0),
         //drawer: const LeftDrawer(),
@@ -63,9 +75,19 @@ Widget build(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "You Borrowed 0 books from this site",
-            style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Container(
+                width: double.infinity, // Atur lebar maksimum
+                child: Text(
+                  "You Borrowed 0 books from this site",
+                  textAlign: TextAlign.center, // Pengaturan teks ke tengah
+                  style: TextStyle(color: Colors.brown, fontSize: 20),
+                ),
+              ),
+            ),
           ),
           SizedBox(height: 8),
         ],
@@ -77,7 +99,7 @@ Widget build(BuildContext context) {
       itemCount: snapshot.data.length,
       itemBuilder: (_, index) => InkWell(
         onTap: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => MyBooksDetail(product: snapshot.data[index]),
@@ -146,21 +168,6 @@ Center(
       textAlign: TextAlign.center,
       maxLines: 2,
       overflow: TextOverflow.ellipsis,
-    ),
-  ),
-),
-Center(
-  child: Padding(
-    padding: const EdgeInsets.only(left: 4, bottom: 2),
-    child: Text(
-      snapshot.data[index].fields.isBorrowed ? 'Not Available' : 'Available',
-      style: GoogleFonts.mochiyPopPOne(
-        textStyle: TextStyle(
-          fontSize: 10.0,
-          color: snapshot.data[index].fields.isBorrowed ? Colors.red : Colors.green,
-        ),
-      ),
-      textAlign: TextAlign.center,
     ),
   ),
 ),

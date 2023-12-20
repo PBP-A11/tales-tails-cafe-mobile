@@ -62,11 +62,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Tales & Tails Cafe',
-          style: TextStyle(
-            color: Color.fromRGBO(114, 78, 43, 1),
-            fontWeight: FontWeight.bold,
+        title: const Center(
+          child: Text(
+            'Tales & Tails Cafe',
+            style: TextStyle(
+              color: Color.fromRGBO(114, 78, 43, 1),
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         backgroundColor: Color.fromARGB(255, 240, 229, 210),

@@ -37,7 +37,7 @@ class DetailGame extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 240, 229, 210),
+      backgroundColor: Color.fromARGB(255, 241, 157, 0),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -95,12 +95,12 @@ class DetailGame extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            Text(
-              '${product.fields.isBorrowed}',
-              style: TextStyle(
-                fontSize: 18,
-              ),
-            ),
+            // Text(
+            //   '${product.fields.isBorrowed}',
+            //   style: TextStyle(
+            //     fontSize: 18,
+            //   ),
+            // ),
             SizedBox(height: 20),
             Center(
                 child: ElevatedButton(

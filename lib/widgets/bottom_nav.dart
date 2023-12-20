@@ -32,19 +32,38 @@ class _BottomNavState extends State<BottomNav> {
     });
   }
 
-  final List<Widget> _pages = [
-    MyHomePage(),
-    UserProfilePages(),
-    ProductPage(),
-    MemberListPage(),
-    BookFormPage(),
-  ];
+  List<Widget> getPages() {
+    if (isAdmin) {
+      return [
+        MyHomePage(),
+        AdminProfilePage(),
+        ProductPage(),
+        MemberListPage(),
+        BookFormPage(),
+      ];
+    } else {
+      return [
+        MyHomePage(),
+        UserProfilePages(),
+        ProductPage(),
+        MemberListPage(),
+        BookFormPage(),
+      ];
+    }
+  }
+  // final List<Widget> _pages = [
+  //   MyHomePage(),
+  //   UserProfilePages(),
+  //   ProductPage(),
+  //   MemberListPage(),
+  //   BookFormPage(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     if (loggedIn) {
     return Scaffold(
-      body: _pages[_selectedIndex],
+      body: getPages()[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
         border: Border(
@@ -78,8 +97,7 @@ class _BottomNavState extends State<BottomNav> {
     );
     } else {
       return Scaffold(
-      body: _pages[_selectedIndex],
-
+      body: getPages()[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
         border: Border(
