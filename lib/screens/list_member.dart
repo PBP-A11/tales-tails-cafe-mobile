@@ -1,5 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:tales_tails_cafe/widgets/bottom_nav.dart';
 import 'dart:convert';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
 import 'package:tales_tails_cafe/models/user.dart';
@@ -15,7 +20,7 @@ class _MemberListPageState extends State<MemberListPage> {
 Future<List<User>> fetchMember() async {
     // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
     var url = Uri.parse(
-        'http://localhost:8000/user_profile/show-user/');
+        'https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/user_profile/show-user/');
     var response = await http.get(
         url,
         headers: {"Content-Type": "application/json"},
@@ -36,6 +41,7 @@ Future<List<User>> fetchMember() async {
 
 @override
 Widget build(BuildContext context) {
+  final request = context.watch<CookieRequest>();
   return Scaffold(
     appBar: AppBar(
       title: const Text('Member'),
@@ -83,8 +89,29 @@ Widget build(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            
+                          onPressed: () async {
+                            final response = await request.postJson(
+                            "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/mybooks/promote-to-admin-flutter/",
+                            jsonEncode(<String, String>{
+                                'email': snapshot.data![index].fields.email,
+                            })
+                            );
+                            if (response['status'] == 'success') {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                content: Text("Berhasil mengubah role!"),
+                                ));
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BottomNav(initialIndex: 3,)),
+                                );
+                            } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                    content:
+                                        Text("Terdapat kesalahan, silakan coba lagi."),
+                                ));
+                            }
 
                           },
                           child: Text('Change Role'),
