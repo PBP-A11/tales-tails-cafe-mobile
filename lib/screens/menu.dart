@@ -148,7 +148,7 @@ class ShopCard extends StatelessWidget {
               ));
             if (item.name == "My Books") {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const MyBookPage(username: 'a',))); //gimana cara ambil usernya
+                MaterialPageRoute(builder: (context) => MyBookPage(username: usn))); //gimana cara ambil usernya
             }
             if (item.name == "Lihat produk") {
               Navigator.push(context,
@@ -156,6 +156,9 @@ class ShopCard extends StatelessWidget {
             } else if (item.name == "Catalog") {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 2,)));
+            } else if (item.name == "Add Book") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 4,)));
             } else if (item.name == "List Member") {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 3,)));

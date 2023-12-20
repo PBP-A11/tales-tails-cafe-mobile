@@ -45,8 +45,11 @@ Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
       title: const Text('Member'),
+      backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+      foregroundColor: Color.fromRGBO(114, 78, 43, 1),
     ),
     //drawer: const LeftDrawer(),
+    backgroundColor: Color.fromRGBO(243, 155, 0, 1),
     body: FutureBuilder(
       future: fetchMember(),
       builder: (context, AsyncSnapshot<List<User>> snapshot) {
@@ -89,6 +92,9 @@ Widget build(BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+                          ),
                           onPressed: () async {
                             final response = await request.postJson(
                             "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/mybooks/promote-to-admin-flutter/",
@@ -114,7 +120,8 @@ Widget build(BuildContext context) {
                             }
 
                           },
-                          child: Text('Change Role'),
+                          child: Text('Change Role',
+                          style: TextStyle(color: Color.fromRGBO(114, 78, 43, 1),),),
                         ),
                       ],
                     ),
