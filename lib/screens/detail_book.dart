@@ -109,6 +109,32 @@ class DetailGame extends StatelessWidget {
                       side: BorderSide(color: Colors.brown, width: 2),
                     ),      
                     onPressed: () async {
+                      if (isAdmin && loggedIn){
+                        final response = await request.get(
+                            "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
+                            if (response['status'] == 'success') {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Buku berhasil dihapus"),
+                              ));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductPage()),
+                              );
+                            } else if (response['status'] == 'error') {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Buku tidak ditemukan"),
+                              ));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductPage()),
+                              );
+                            }
+                      }
+                     else if (loggedIn){
                       final response = await request.get(
                           "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/book-borrowed-flutter/${product.pk}");
                       if (response['status'] == 'success') {
@@ -116,7 +142,7 @@ class DetailGame extends StatelessWidget {
                             .showSnackBar(const SnackBar(
                           content: Text("Buku berhasil dipinjam"),
                         ));
-                        Navigator.pushReplacement(
+                        Navigator.pop(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ProductPage()),
@@ -126,7 +152,7 @@ class DetailGame extends StatelessWidget {
                             .showSnackBar(const SnackBar(
                           content: Text("Buku sedang tidak tersedia saat ini"),
                         ));
-                        Navigator.pushReplacement(
+                        Navigator.pop(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ProductPage()),
@@ -144,40 +170,77 @@ class DetailGame extends StatelessWidget {
                       ))),
             SizedBox(height: 20),
 
-            Center(
-                child: ElevatedButton(
-                    onPressed: () async {
-                      final response = await request.get(
-                          "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
-                      if (response['status'] == 'success') {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Buku berhasil dihapus"),
-                        ));
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductPage()),
-                        );
-                      } else if (response['status'] == 'error') {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text("Buku tidak ditemukan"),
-                        ));
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductPage()),
-                        );
-                      } else {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      }
-                    },
-                    child: const Text("Delete Book"))),
-                    SizedBox(height: 20)
+//             Center(
+//                 child: ElevatedButton(
+//                     onPressed: () async {
+//                       final response = await request.get(
+//                           "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
+//                       if (response['status'] == 'success') {
+//                         ScaffoldMessenger.of(context)
+//                             .showSnackBar(const SnackBar(
+//                           content: Text("Buku berhasil dihapus"),
+//                         ));
+//                         Navigator.pushReplacement(
+//                           context,
+//                           MaterialPageRoute(
+//                               builder: (context) => ProductPage()),
+//                         );
+//                       } else if (response['status'] == 'error') {
+//                         ScaffoldMessenger.of(context)
+//                             .showSnackBar(const SnackBar(
+//                           content: Text("Buku tidak ditemukan"),
+//                         ));
+//                         Navigator.pushReplacement(
+//                           context,
+//                           MaterialPageRoute(
+//                               builder: (context) => ProductPage()),
+//                         );
+//                       } else {
+//                         Navigator.pushReplacement(
+//                           context,
+//                           MaterialPageRoute(builder: (context) => LoginPage()),
+//                         );
+//                     }
+//                     },
+//                     child: Text(
+//                       isAdmin && loggedIn ? "Delete" : "Borrow book",
+//                       style: TextStyle(color: Colors.black),
+//                       ))),
+//             SizedBox(height: 20),
+            // Center(
+            //     child: ElevatedButton(
+            //         onPressed: () async {
+            //           final response = await request.get(
+            //               "https://talesandtailscafe-a11-tk.pbp.cs.ui.ac.id/catalog/delete-book-flutter/${product.pk}");
+            //           if (response['status'] == 'success') {
+            //             ScaffoldMessenger.of(context)
+            //                 .showSnackBar(const SnackBar(
+            //               content: Text("Buku berhasil dihapus"),
+            //             ));
+            //             Navigator.pushReplacement(
+            //               context,
+            //               MaterialPageRoute(
+            //                   builder: (context) => ProductPage()),
+            //             );
+            //           } else if (response['status'] == 'error') {
+            //             ScaffoldMessenger.of(context)
+            //                 .showSnackBar(const SnackBar(
+            //               content: Text("Buku tidak ditemukan"),
+            //             ));
+            //             Navigator.pushReplacement(
+            //               context,
+            //               MaterialPageRoute(
+            //                   builder: (context) => ProductPage()),
+            //             );
+            //           } else {
+            //             Navigator.pushReplacement(
+            //               context,
+            //               MaterialPageRoute(builder: (context) => LoginPage()),
+            //             );
+            //           }
+            //         },
+            //         child: const Text("Delete Book"))),
+            //         SizedBox(height: 20)
           ],
         ),
       ),

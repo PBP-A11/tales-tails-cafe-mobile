@@ -42,22 +42,22 @@ class _UserProfilePagesState extends State<UserProfilePages> {
           'Profile',
           style: GoogleFonts.mochiyPopPOne(
             fontSize: 20,
-            color: Color.fromARGB(255, 240, 229, 210)
+            color: Colors.brown,
             )
           ),
-        backgroundColor: Color.fromARGB(255, 118, 192, 221),
+       backgroundColor: Color.fromARGB(255, 240, 229, 210),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
-          child: Container(
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                        color: Colors.brown,
-                        width: 4))), // Ubah warna garis sesuai keinginan
+            preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.brown,
+                          width: 4))), // Ubah warna garis sesuai keinginan
           ),
         ),
       ),
-      backgroundColor: Color.fromARGB(255, 240, 229, 210),
+      backgroundColor: Color.fromARGB(255, 241, 157, 0),
       //drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         child: Padding(
@@ -177,33 +177,33 @@ class _UserProfilePagesState extends State<UserProfilePages> {
                     );
                   },
                     leading: Container(
-                      // width: 35,
-                      // height: 35,
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(100),
-                      //   border: Border.all(
-                      //     color: Colors.brown,
-                      //     width: 1
-                      //   ),
-                      //   color: Color.fromARGB(239, 240, 229, 210),
-                      // ),
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: Colors.brown,
+                          width: 1
+                        ),
+                        color: Color.fromARGB(239, 240, 229, 210),
+                      ),
                       child: Icon(Icons.book),
                     ),
                     title: Text(
                       "My Book"
                     ),
                     trailing: Container(
-                      // width: 35,
-                      // height: 35,
-                      // decoration: BoxDecoration(
-                      //    borderRadius: BorderRadius.circular(100),
-                      //   border: Border.all(
-                      //     // color: Colors.brown,
-                      //     // width: 1
-                      //   ),
-                      //   // color: Color.fromARGB(239, 240, 229, 210),
-                      // ),
-                      child: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey,),
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: Colors.brown,
+                          width: 1
+                        ),
+                        color: Color.fromARGB(239, 240, 229, 210),
+                      ),
+                      child: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.brown,),
                     ),
                   ),
                   const SizedBox(height:2),
@@ -230,33 +230,33 @@ class _UserProfilePagesState extends State<UserProfilePages> {
                   } 
                   },
                     leading: Container(
-                      // width: 35,
-                      // height: 35,
-                      // decoration: BoxDecoration(
-                      //   borderRadius: BorderRadius.circular(100),
-                      //   border: Border.all(
-                      //     color: Colors.brown,
-                      //     width: 1
-                      //   ),
-                      //   color: Color.fromARGB(239, 240, 229, 210),
-                      // ),
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: Colors.brown,
+                          width: 1
+                        ),
+                        color: Color.fromARGB(239, 240, 229, 210),
+                      ),
                       child: Icon(Icons.exit_to_app),
                     ),
                     title: Text(
                       "Logout"
                     ),
                     trailing: Container(
-                      // width: 35,
-                      // height: 35,
-                      // decoration: BoxDecoration(
-                      //    borderRadius: BorderRadius.circular(100),
-                      //   border: Border.all(
-                      //     // color: Colors.brown,
-                      //     // width: 1
-                      //   ),
-                      //   // color: Color.fromARGB(239, 240, 229, 210),
-                      // ),
-                      child: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey,),
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                         borderRadius: BorderRadius.circular(100),
+                        border: Border.all(
+                          color: Colors.brown,
+                          width: 1
+                        ),
+                        color: Color.fromARGB(239, 240, 229, 210),
+                      ),
+                      child: const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.brown),
                     ),
                   )
                   ],
