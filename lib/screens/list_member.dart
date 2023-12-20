@@ -45,8 +45,18 @@ Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
       title: const Text('Member'),
-      backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+      backgroundColor: Color.fromARGB(255, 240, 229, 210),
       foregroundColor: Color.fromRGBO(114, 78, 43, 1),
+      bottom: PreferredSize(
+            preferredSize: Size.fromHeight(2.0), // Tinggi garis bawah AppBar
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                          color: Colors.brown,
+                          width: 4))), // Ubah warna garis sesuai keinginan
+          ),
+        ),
     ),
     //drawer: const LeftDrawer(),
     backgroundColor: Color.fromRGBO(243, 155, 0, 1),
@@ -93,7 +103,7 @@ Widget build(BuildContext context) {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(226, 199, 153, 1),
+                            backgroundColor: Color.fromARGB(255, 240, 229, 210),
                           ),
                           onPressed: () async {
                             final response = await request.postJson(
@@ -121,7 +131,7 @@ Widget build(BuildContext context) {
 
                           },
                           child: Text('Change Role',
-                          style: TextStyle(color: Color.fromRGBO(114, 78, 43, 1),),),
+                          style: TextStyle(color: Colors.brown,),),
                         ),
                       ],
                     ),
