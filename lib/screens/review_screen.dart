@@ -128,7 +128,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: const Color(0xfffefadd),
+        backgroundColor: const Color.fromARGB(255, 240, 229, 210),
         centerTitle: true,
         title: Text(
           'Review',
@@ -158,9 +158,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-
-                      height: 250,
-
+                      height: 400,
                       width: double.infinity,
                       child: FutureBuilder(
                         future: fetchReview(request, widget.product.pk),
@@ -191,7 +189,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
                                     border: Border.all(color: Colors.brown, width: 4),
-                                    color: const Color(0xfffefadd),
+                                    color: const Color.fromARGB(255, 240, 229, 210),
                                   ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
@@ -209,15 +207,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold),
                                             ),
-
                                             if (isAdmin ?? false)
-
                                             PopupMenuButton(
                                                 icon: const Icon(
                                                   Icons.more_vert_rounded,
                                                   color: Colors.brown,
                                                 ),
-                                                color: const Color(0xfffefadd),
+                                                color: const Color.fromARGB(255, 240, 229, 210),
                                                 onSelected: (String choice) {
                                                   if (choice == 'Edit') {
                                                     setState(() {

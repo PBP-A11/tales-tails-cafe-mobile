@@ -87,7 +87,7 @@ class _AdminProfilePageState extends State<AdminProfilePage> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Image.network(
-                            "https://cdn.discordapp.com/attachments/1020531071479201793/1186512534379954239/-_LIPPS_hair_MENS_HAIRSTYLE__.jpg?ex=659384e8&is=65810fe8&hm=dce9e40046a1430d99176308a9901fd61bccae459188c2ecdab4772a4f5a0333&",
+                            "https://cdn.discordapp.com/attachments/1020531071479201793/1186512367551520798/man.png",
                             fit: BoxFit.cover,
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;

@@ -4,6 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tales_tails_cafe/models/user_profile.dart';
 import 'package:tales_tails_cafe/screens/edit_user_profile.dart';
+import 'package:tales_tails_cafe/screens/list_member.dart';
 import 'package:tales_tails_cafe/screens/menu.dart';
 import 'package:tales_tails_cafe/screens/mybook.dart';
 import 'package:tales_tails_cafe/widgets/left_drawer.dart';
@@ -100,7 +101,7 @@ class _UserProfilePagesState extends State<UserProfilePages> {
                           borderRadius: BorderRadius.circular(100),
                           child: Image.network(
                             // Use userProfile.imageURL or the appropriate property to display the user's image
-                            "https://cdn.discordapp.com/attachments/1020531071479201793/1186512534379954239/-_LIPPS_hair_MENS_HAIRSTYLE__.jpg?ex=659384e8&is=65810fe8&hm=dce9e40046a1430d99176308a9901fd61bccae459188c2ecdab4772a4f5a0333&",
+                            "https://cdn.discordapp.com/attachments/1020531071479201793/1186512367551520798/man.png",
                             fit: BoxFit.cover,
                             loadingBuilder: (context, child, loadingProgress) {
                               if (loadingProgress == null) return child;
@@ -171,10 +172,18 @@ class _UserProfilePagesState extends State<UserProfilePages> {
                   const SizedBox(height: 30),
                   ListTile(
                     onTap: () {
+
+                  if (isAdmin){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MemberListPage()), // Ganti dengan halaman yang diinginkan
+                    );
+                  } else {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MyBookPage(username: '${snapshot.data!.username}')), // Ganti dengan halaman yang diinginkan
                     );
+                  }
                   },
                     leading: Container(
                       width: 35,
@@ -190,7 +199,7 @@ class _UserProfilePagesState extends State<UserProfilePages> {
                       child: Icon(Icons.book),
                     ),
                     title: Text(
-                      "My Book"
+                      isAdmin ? "List Member" : "My Book"
                     ),
                     trailing: Container(
                       width: 35,
