@@ -31,6 +31,7 @@ class MyHomePage extends StatelessWidget {
         ShopItem("My Books", Icons.bookmark_border),
         ShopItem("Logout", Icons.logout),
       ];
+
     } else if(loggedIn){
       return [
         ShopItem("Catalog", Icons.book),
@@ -38,11 +39,11 @@ class MyHomePage extends StatelessWidget {
         ShopItem("Logout", Icons.logout),
         ShopItem("Profile", Icons.park_sharp)
       ];
+
     } else {
       return [
         ShopItem("Catalog", Icons.checklist),
         ShopItem("Login", Icons.login),
-        ShopItem("Profile", Icons.park_sharp)
       ];
     }
   }
@@ -162,6 +163,9 @@ class ShopCard extends StatelessWidget {
             } else if (item.name == "Catalog") {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 2,)));
+            } else if (item.name == "Add Book") {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 4,)));
             } else if (item.name == "List Member") {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const BottomNav(initialIndex: 3,)));
