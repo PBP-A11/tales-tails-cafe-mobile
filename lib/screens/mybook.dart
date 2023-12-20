@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -45,8 +45,11 @@ Widget build(BuildContext context) {
     
     return Scaffold(
         appBar: AppBar(
-        title: const Text('Product'),
+          title: const Text('List of Borrowed Books'),
+          backgroundColor: Color.fromARGB(255, 240, 229, 210),
+          centerTitle: true, // Set this property to true
         ),
+        backgroundColor: Color.fromARGB(255, 241, 157, 0),
         //drawer: const LeftDrawer(),
         body: FutureBuilder(
             future: fetchProduct(widget.username),
@@ -56,16 +59,20 @@ Widget build(BuildContext context) {
                 } else {
                     if (snapshot.connectionState == ConnectionState.done) {
   if (snapshot.data.isEmpty) {
-    return const Column(
-      children: [
-        Text(
-          "You Borrowed 0 books from this site",
-          style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-        ),
-        SizedBox(height: 8),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "You Borrowed 0 books from this site",
+            style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+          ),
+          SizedBox(height: 8),
+        ],
+      ),
     );
-  } else {
+  }
+ else {
     return ListView.builder(
       itemCount: snapshot.data.length,
       itemBuilder: (_, index) => InkWell(
@@ -78,35 +85,90 @@ Widget build(BuildContext context) {
           );
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.network(
-                "${snapshot.data[index].fields.imageLink}",
-                width: 100,
-                height: 100,
-                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                  return Text(
-                    "Image not available",
-                    style: GoogleFonts.mochiyPopPOne(),
-                  );
-                },
-              ),
-              const SizedBox(height: 10),
-              Text(
-                "${snapshot.data[index].fields.title}",
-                style: const TextStyle(
-                  fontSize: 10.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 1),
-            ],
+  decoration: BoxDecoration(
+    color: Color.fromARGB(255, 240, 229, 210),
+    border: Border.all(color: Colors.brown, width: 4.0),
+    borderRadius: BorderRadius.circular(8.0),
+  ),
+  margin: const EdgeInsets.all(8.0),
+  padding: const EdgeInsets.only(left: 4, right: 4, top: 10),
+  child: Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Center(
+  child: Image.network(
+    snapshot.data[index].fields.imageLink,
+    width: 150,
+    height: 150,
+    errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+      return SizedBox(
+        width: 100,
+        height: 100,
+        child: Center(
+          child: Container(
+            margin: const EdgeInsets.only(left: 10),
+            child: Text(
+              "Image not available",
+              style: GoogleFonts.mochiyPopPOne(),
+            ),
           ),
         ),
+      );
+    },
+  ),
+),
+const SizedBox(height: 12),
+Center(
+  child: Padding(
+    padding: const EdgeInsets.only(left: 4, bottom: 2.0),
+    child: Text(
+      snapshot.data[index].fields.title,
+      style: const TextStyle(
+        fontSize: 14.0,
+        fontWeight: FontWeight.bold,
+      ),
+      textAlign: TextAlign.center,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    ),
+  ),
+),
+const SizedBox(height: 4),
+Center(
+  child: Padding(
+    padding: const EdgeInsets.only(left: 4, bottom: 2.0),
+    child: Text(
+      snapshot.data[index].fields.author,
+      style: GoogleFonts.poppins(
+        fontSize: 12.0,
+      ),
+      textAlign: TextAlign.center,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+    ),
+  ),
+),
+Center(
+  child: Padding(
+    padding: const EdgeInsets.only(left: 4, bottom: 2),
+    child: Text(
+      snapshot.data[index].fields.isBorrowed ? 'Not Available' : 'Available',
+      style: GoogleFonts.mochiyPopPOne(
+        textStyle: TextStyle(
+          fontSize: 10.0,
+          color: snapshot.data[index].fields.isBorrowed ? Colors.red : Colors.green,
+        ),
+      ),
+      textAlign: TextAlign.center,
+    ),
+  ),
+),
+
+          ],
+        ),
+      ),
+
       ),
     );
   }
